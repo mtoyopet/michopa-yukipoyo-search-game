@@ -87,8 +87,8 @@
         "./images/yuki/yuki_23.png",
         "./images/yuki/yuki_24.png"
       ]
-      const indexes = []
       const michopaDisplayImages = []
+      let yukipoyoDisplayImage = null      
       // canvas要素を取得
       const canvas = document.getElementById("canvas")
       // canvasを操作する機能を持った、オブジェクトを取り出す
@@ -96,19 +96,24 @@
       let answerCoordinateX = 0 //　正解の画像の座標X
       let answerCoordinateY = 0 //　正解の画像の座標Y
 
-      // みちょぱの画像を8枚選ぶ
-      while (indexes.length < michopaImageURLs.length - 1) {
-        let index = randomInt(0, michopaImageURLs.length - 1)
-        if (!indexes.includes(index)) {
-          let image = generateImageObject(michopaImageURLs[index])
-          indexes.push(index)
-          image.onload = () => michopaDisplayImages.push(image)
-        }
-      }
+      function selectDisplayImages(callback) {
+        const indexes = []
 
-      // ゆきぽよの画像を１枚選ぶ
-      const index = randomInt(0, yukipoyoImageURLs.length - 1)
-      const yukipoyoImage = generateImageObject(yukipoyoImageURLs[index])
+        // みちょぱの画像を選ぶ
+        while (indexes.length < michopaImageURLs.length - 1) {
+          let index = randomInt(0, michopaImageURLs.length - 1)
+          if (!indexes.includes(index)) {
+            let image = generateImageObject(michopaImageURLs[index])
+            indexes.push(index)
+            image.onload = () => michopaDisplayImages.push(image)
+          }
+        }
+
+        // ゆきぽよの画像を１枚選ぶ
+        const index = randomInt(0, yukipoyoImageURLs.length - 1)
+        yukipoyoDisplayImage = generateImageObject(yukipoyoImageURLs[index])
+        yukipoyoDisplayImage.onload = () => callback()
+      }
 
       function drawImage() {
         // 表示をクリア
@@ -125,7 +130,7 @@
             const coordinateY = 125 * j
             if (randomInteger === counter) {
               // ゆきぽよの画像を表示する
-              context.drawImage(yukipoyoImage, coordinateX, coordinateY, 125, 125)
+              context.drawImage(yukipoyoDisplayImage, coordinateX, coordinateY, 125, 125)
               // 答えの座標をセットする
               answerCoordinateX = coordinateX
               answerCoordinateY = coordinateY
@@ -163,7 +168,7 @@
           mouseCoordinateY < answerCoordinateY + 125
         ) {
           context.fillStyle = "#FF0000";
-          context.fillText("ゆきぽよ発見！！", 10, 188)
+          context.fillText("ゆきぽよ発見!!!", 10, 188)
         } else {
           context.font = '35px sans-serif'
           context.fillStyle = "blue";
@@ -172,7 +177,8 @@
       }
 
       window.onload = () => {
-        drawImage()
+        selectDisplayImages(drawImage)
+        // drawImage()
       }
     </script>
   </body>
