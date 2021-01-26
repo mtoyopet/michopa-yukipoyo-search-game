@@ -34,6 +34,12 @@
         max-width: 100%;
         margin: 5px 10px;
       }
+
+      #timer-text {
+        font-size: 30px;
+        color: red;
+      }
+
     </style>
   </head>
   <body>
@@ -43,6 +49,14 @@
 
     <div class="canvas-wrap">
       <canvas id="canvas" class="center" width="375" height="375" onclick="selectImage(event)"></canvas>
+    </div>
+
+    <div class="timer-wrap center">
+      <span id="timer-text">3</span><span>秒以内に探せ！</span>
+    </div>
+
+    <div class="start-game-button-wrap center">
+      <button id="start-game-button-text" onclick="startGame(drawImage)">ゲームスタート</button>
     </div>
 
     <script>
@@ -95,8 +109,13 @@
       const context = canvas.getContext("2d")
       let answerCoordinateX = 0 //　正解の画像の座標X
       let answerCoordinateY = 0 //　正解の画像の座標Y
+      const timerElement = document.getElementById("timer-text")
+      let currentTimerId
+      let isGameOver = false
+      let foundYukipoyoCount = 0
 
-      function selectDisplayImages(callback) {
+      function startGame(callback) {
+        isGameOver = false
         const indexes = []
 
         // みちょぱの画像を選ぶ
@@ -120,7 +139,6 @@
         context.clearRect(0, 0, 375, 375)
         // 文字を埋め込む時の大きさとフォント
         context.font = '50px sans-serif'
-
         const randomInteger = Math.floor(Math.random() * 9)
         let counter = 0
 
@@ -141,6 +159,7 @@
             counter += 1
           }
         }
+        setTimerInterval()
       }
 
       function randomInt(min, max) {
@@ -156,9 +175,12 @@
       }
 
       function selectImage(event) {
+        if (isGameOver) { return }
+
         const rect = event.target.getBoundingClientRect()
         const mouseCoordinateX = event.clientX - Math.floor(rect.left)
         const mouseCoordinateY = event.clientY - Math.floor(rect.top)
+        clearInterval(currentTimerId)
 
         if (
           mouseCoordinateX > answerCoordinateX &&
@@ -166,27 +188,73 @@
           mouseCoordinateY > answerCoordinateY &&
           mouseCoordinateY < answerCoordinateY + 125
         ) {
-          context.fillStyle = 'rgba(255,255,255,0.5)';
-          context.fillRect(0, 0, 375, 375);
+          context.fillStyle = 'rgba(255,255,255,0.8)'
+          context.fillRect(0, 0, 375, 375)
           context.font = '40px sans-serif'
           context.fillStyle = "red"
           context.fillText("ゆきぽよ発見🎉!!!", 25, 188)
+          foundYukipoyoCount++
         } else {
-          context.fillStyle = 'rgba(0,0,0,0.5)'
-          context.fillRect(0, 0, 375, 375);
+          isGameOver = true
+          context.fillStyle = 'rgba(0,0,0,0.8)'
+          context.fillRect(0, 0, 375, 375)
           context.font = '35px sans-serif'
           context.fillStyle = "yellow"
           context.fillText("それみちょぱ😭😭", 45, 188)
+          drawFoundYukipoyoCount()
         }
+
+        if (isGameOver) { return }
 
         setTimeout(() => {
           michopaDisplayImages = []
-          selectDisplayImages(drawImage)
+          startGame(drawImage)
         }, 700)
       }
 
+      function startTimer () {
+        let timeLeft = parseInt(timerElement.innerText)
+        if (timeLeft <= 1) {
+          gameOver()
+          clearInterval(currentTimerId)
+        } else {
+          timerElement.innerText = (timeLeft - 1).toString()
+        }
+      }
+
+      function setTimerInterval () {
+        timerElement.innerText = 3
+        currentTimerId = setInterval(() => { startTimer() }, 1000)
+      }
+
+      function gameOver () {
+        isGameOver = true
+        context.fillStyle = 'rgba(0,0,0,1)'
+        context.fillRect(0, 0, 375, 375)
+        context.font = '35px sans-serif'
+        context.fillStyle = "yellow"
+        context.fillText("ゲームオーバー💀🦴", 30, 188)
+        drawFoundYukipoyoCount()
+        timerElement.innerText = 0
+      }
+
+      function drawMenu() {
+        context.fillStyle = 'pink'
+        context.fillRect(0, 0, 375, 375)
+        context.font = '30px sans-serif'
+        context.fillStyle = "grey"
+        context.fillText("ゆきぽよを探そう!", 55, 188)
+      }
+
+      function drawFoundYukipoyoCount() {
+        context.font = '15px sans-serif'
+        context.fillStyle = "white"
+        context.fillText(`${foundYukipoyoCount}ゆきぽよはっけ〜ん`, 110, 220)
+        foundYukipoyoCount = 0
+      }
+
       window.onload = () => {
-        selectDisplayImages(drawImage)
+        drawMenu()
       }
     </script>
   </body>
