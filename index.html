@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>間違いさがしゲーム</title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="株式会社X-HACK" />
+    <meta property="og:description" content="間違い探しゲームです" />
+    <meta
+      property="og:image"
+      content="https://js-hack.s3-ap-northeast-1.amazonaws.com/%E9%96%93%E9%81%95%E3%81%84+%E3%81%95%E3%81%8B%E3%82%99%E3%81%97.png"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 500px;
+      }
+      .content {
+        width: 100%;
+      }
+      .center {
+        text-align: center;
+      }
+      .canvas-wrap {
+        width: 375px;
+        margin: 0 auto;
+      }
+      .input-data {
+        text-align: right;
+      }
+      .mt5 {
+        max-width: 100%;
+        margin: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <h1 class="center">間違い探し生成</h1>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="canvas" class="center" width="375" height="375"></canvas>
+    </div>
+
+    <script>
+      const imageURLsOne = [
+        "./images/micho/micho_1.png",
+        "./images/micho/micho_2.png",
+        "./images/micho/micho_3.png",
+        "./images/micho/micho_4.png",
+        "./images/micho/micho_5.png",
+        "./images/micho/micho_6.png",
+        "./images/micho/micho_7.png",
+        "./images/micho/micho_8.png",
+        "./images/micho/micho_9.png",
+        "./images/micho/micho_10.png",
+        "./images/micho/micho_11.png",
+        "./images/micho/micho_12.png",
+        "./images/micho/micho_13.png"
+      ]
+      const imageURLsTwo = [
+        "./images/yuki/yuki_1.png",
+        "./images/yuki/yuki_2.png",
+        "./images/yuki/yuki_3.png",
+        "./images/yuki/yuki_4.png",
+        "./images/yuki/yuki_5.png",
+        "./images/yuki/yuki_6.png",
+        "./images/yuki/yuki_7.png",
+        "./images/yuki/yuki_8.png",
+        "./images/yuki/yuki_9.png",
+        "./images/yuki/yuki_10.png"
+      ]
+      const indexes = []
+      const displayImages = []
+      // canvas要素を取得
+      const canvas = document.getElementById("canvas")
+      // canvasを操作する機能を持った、オブジェクトを取り出す
+      const context = canvas.getContext("2d")
+      // srcプロパティに画像の取得先のパスをセットする
+
+      // function selectDisplayImages () {
+      while (indexes.length < 9) {
+        let index = randomInt(0, imageURLsOne.length - 1)
+        if (!indexes.includes(index)) {
+          let image = generateImageObject(imageURLsOne[index])
+          indexes.push(index)
+          image.onload = () => displayImages.push(image)
+        }
+      }
+
+      let index = randomInt(0, imageURLsTwo.length - 1)
+
+      // }
+
+      function drawImage() {
+        // 表示する画像を選択する
+        // selectDisplayImages()
+        // 表示をクリア
+        context.clearRect(0, 0, 375, 375)
+        // 文字を埋め込む時の大きさとフォント
+        context.font = '20px sans-serif'
+
+        let rNum = Math.floor(Math.random() * 9)
+        let counter = 0
+
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            if (rNum === counter) {
+              context.drawImage(displayImages[counter], 125 * i, 125 * j, 125, 125)
+              flg = true
+            } else {
+              context.drawImage(displayImages[counter], 125 * i, 125 * j, 125, 125)
+            }
+            counter += 1
+          }
+        }
+      }
+
+      function randomInt(min, max) {
+        // 0 ~ imageURLsOne.length - 1までのランダムな数値が返る
+        return Math.floor(Math.random() * Math.floor(max))
+      }
+
+      function generateImageObject(imageURL) {
+        let image = new Image()
+        image.src = imageURL
+
+        return image
+      }
+
+      window.onload = () => {
+        drawImage()
+      }
+    </script>
+  </body>
+</html>
