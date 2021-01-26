@@ -44,7 +44,7 @@
   </head>
   <body>
     <div class="center">
-      <h1 class="center">ゆきぽよはどこだ！？ゲーム</h1>
+      <h1 class="center">ゆきぽよはどこだ！？</h1>
     </div>
 
     <div class="canvas-wrap">
@@ -52,11 +52,11 @@
     </div>
 
     <div class="timer-wrap center">
-      <span id="timer-text">3</span><span>秒以内に探せ！</span>
+      <span id="timer-text">4</span><span>秒以内に探せ！</span>
     </div>
 
     <div class="start-game-button-wrap center">
-      <button id="start-game-button-text" onclick="startGame(drawImage)">ゲームスタート</button>
+      <button id="start-game-button" onclick="startGame(drawImage)">ゲームスタート</button>
     </div>
 
     <script>
@@ -110,11 +110,14 @@
       let answerCoordinateX = 0 //　正解の画像の座標X
       let answerCoordinateY = 0 //　正解の画像の座標Y
       const timerElement = document.getElementById("timer-text")
+      const startButtonElement = document.getElementById("start-game-button")
       let currentTimerId
       let isGameOver = false
       let foundYukipoyoCount = 0
 
+
       function startGame(callback) {
+        hideStartButton()
         isGameOver = false
         const indexes = []
 
@@ -202,6 +205,7 @@
           context.fillStyle = "yellow"
           context.fillText("それみちょぱ😭😭", 45, 188)
           drawFoundYukipoyoCount()
+          showStartButton()
         }
 
         if (isGameOver) { return }
@@ -223,7 +227,7 @@
       }
 
       function setTimerInterval () {
-        timerElement.innerText = 3
+        timerElement.innerText = 4
         currentTimerId = setInterval(() => { startTimer() }, 1000)
       }
 
@@ -236,6 +240,7 @@
         context.fillText("ゲームオーバー💀🦴", 30, 188)
         drawFoundYukipoyoCount()
         timerElement.innerText = 0
+        showStartButton()
       }
 
       function drawMenu() {
@@ -243,7 +248,7 @@
         context.fillRect(0, 0, 375, 375)
         context.font = '30px sans-serif'
         context.fillStyle = "grey"
-        context.fillText("ゆきぽよを探そう!", 55, 188)
+        context.fillText("ゆきぽよを探そう!", 60, 188)
       }
 
       function drawFoundYukipoyoCount() {
@@ -251,6 +256,14 @@
         context.fillStyle = "white"
         context.fillText(`${foundYukipoyoCount}ゆきぽよはっけ〜ん`, 110, 220)
         foundYukipoyoCount = 0
+      }
+
+      function hideStartButton () {
+        startButtonElement.style.visibility = "hidden"
+      }
+
+      function showStartButton () {
+        startButtonElement.style.visibility = "visible"
       }
 
       window.onload = () => {
