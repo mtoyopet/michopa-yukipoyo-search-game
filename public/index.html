@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ゆきぽよはどこだ！？ゲーム</title>
+    <title>ゆきぽよを探せ！ゲーム</title>
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content="株式会社X-HACK" />
     <meta property="og:description" content="間違い探しゲームです" />
@@ -44,7 +44,7 @@
   </head>
   <body>
     <div class="center">
-      <h1 class="center">ゆきぽよはどこだ！？</h1>
+      <h1 class="center">ゆきぽよを探せ！</h1>
     </div>
 
     <div class="canvas-wrap">
@@ -58,49 +58,11 @@
     <div class="start-game-button-wrap center">
       <button id="start-game-button" onclick="startGame(drawImage)">ゲームスタート</button>
     </div>
+    <script type="text/javascript" src="./js/generateImageURLs.js"></script>
 
     <script>
-      const michopaImageURLs = [
-        "images/michopa/micho_1.png",
-        "images/michopa/micho_2.png",
-        "images/michopa/micho_3.png",
-        "images/michopa/micho_4.png",
-        "images/michopa/micho_5.png",
-        "images/michopa/micho_6.png",
-        "images/michopa/micho_7.png",
-        "images/michopa/micho_8.png",
-        "images/michopa/micho_9.png",
-        "images/michopa/micho_10.png",
-        "images/michopa/micho_11.png",
-        "images/michopa/micho_12.png",
-        "images/michopa/micho_13.png"
-      ]
-      const yukipoyoImageURLs = [
-        "images/yuki/yuki_1.png",
-        "images/yuki/yuki_2.png",
-        "images/yuki/yuki_3.png",
-        "images/yuki/yuki_4.png",
-        "images/yuki/yuki_5.png",
-        "images/yuki/yuki_6.png",
-        "images/yuki/yuki_7.png",
-        "images/yuki/yuki_8.png",
-        "images/yuki/yuki_9.png",
-        "images/yuki/yuki_10.png",
-        "images/yuki/yuki_11.png",
-        "images/yuki/yuki_12.png",
-        "images/yuki/yuki_13.png",
-        "images/yuki/yuki_14.png",
-        "images/yuki/yuki_15.png",
-        "images/yuki/yuki_16.png",
-        "images/yuki/yuki_17.png",
-        "images/yuki/yuki_18.png",
-        "images/yuki/yuki_19.png",
-        "images/yuki/yuki_20.png",
-        "images/yuki/yuki_21.png",
-        "images/yuki/yuki_22.png",
-        "images/yuki/yuki_23.png",
-        "images/yuki/yuki_24.png"
-      ]
+      const michopaImageURLs = generateImageURLsArray("michopa", 13)
+      const yukipoyoImageURLs = generateImageURLsArray("yukipoyo", 24)
       let michopaDisplayImages = []
       let yukipoyoDisplayImage = null      
       // canvas要素を取得
@@ -186,6 +148,7 @@
         clearInterval(currentTimerId)
 
         if (
+          // ゆきぽよの画像が選択されていたら
           mouseCoordinateX > answerCoordinateX &&
           mouseCoordinateX < answerCoordinateX + 125 &&
           mouseCoordinateY > answerCoordinateY &&
