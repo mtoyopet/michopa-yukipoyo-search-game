@@ -42,7 +42,7 @@
     </div>
 
     <div class="canvas-wrap">
-      <canvas id="canvas" class="center" width="375" height="375" onclick="isSelectedImageYukipoyo(event)"></canvas>
+      <canvas id="canvas" class="center" width="375" height="375" onclick="selectImage(event)"></canvas>
     </div>
 
     <script>
@@ -87,7 +87,7 @@
         "./images/yuki/yuki_23.png",
         "./images/yuki/yuki_24.png"
       ]
-      const michopaDisplayImages = []
+      let michopaDisplayImages = []
       let yukipoyoDisplayImage = null      
       // canvas要素を取得
       const canvas = document.getElementById("canvas")
@@ -144,7 +144,6 @@
       }
 
       function randomInt(min, max) {
-        // 0 ~ michopaImageURLs.length - 1までのランダムな数値が返る
         return Math.floor(Math.random() * Math.floor(max))
       }
 
@@ -156,7 +155,7 @@
         return image
       }
 
-      function isSelectedImageYukipoyo(event) {
+      function selectImage(event) {
         const rect = event.target.getBoundingClientRect()
         const mouseCoordinateX = event.clientX - Math.floor(rect.left)
         const mouseCoordinateY = event.clientY - Math.floor(rect.top)
@@ -167,18 +166,27 @@
           mouseCoordinateY > answerCoordinateY &&
           mouseCoordinateY < answerCoordinateY + 125
         ) {
-          context.fillStyle = "#FF0000";
-          context.fillText("ゆきぽよ発見!!!", 10, 188)
+          context.fillStyle = 'rgba(255,255,255,0.5)';
+          context.fillRect(0, 0, 375, 375);
+          context.font = '40px sans-serif'
+          context.fillStyle = "red"
+          context.fillText("ゆきぽよ発見🎉!!!", 25, 188)
         } else {
+          context.fillStyle = 'rgba(0,0,0,0.5)'
+          context.fillRect(0, 0, 375, 375);
           context.font = '35px sans-serif'
-          context.fillStyle = "blue";
-          context.fillText("それみちょぱな😭😭", 20, 188)
+          context.fillStyle = "yellow"
+          context.fillText("それみちょぱな😭😭", 25, 188)
         }
+
+        setTimeout(() => {
+          michopaDisplayImages = []
+          selectDisplayImages(drawImage)
+        }, 800)
       }
 
       window.onload = () => {
         selectDisplayImages(drawImage)
-        // drawImage()
       }
     </script>
   </body>
