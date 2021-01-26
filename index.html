@@ -42,7 +42,7 @@
     </div>
 
     <div class="canvas-wrap">
-      <canvas id="canvas" class="center" width="375" height="375" onclick="selectImage(event)"></canvas>
+      <canvas id="canvas" class="center" width="375" height="375" onclick="isSelectedImageYukipoyo(event)"></canvas>
     </div>
 
     <script>
@@ -71,7 +71,21 @@
         "./images/yuki/yuki_7.png",
         "./images/yuki/yuki_8.png",
         "./images/yuki/yuki_9.png",
-        "./images/yuki/yuki_10.png"
+        "./images/yuki/yuki_10.png",
+        "./images/yuki/yuki_11.png",
+        "./images/yuki/yuki_12.png",
+        "./images/yuki/yuki_13.png",
+        "./images/yuki/yuki_14.png",
+        "./images/yuki/yuki_15.png",
+        "./images/yuki/yuki_16.png",
+        "./images/yuki/yuki_17.png",
+        "./images/yuki/yuki_18.png",
+        "./images/yuki/yuki_19.png",
+        "./images/yuki/yuki_20.png",
+        "./images/yuki/yuki_21.png",
+        "./images/yuki/yuki_22.png",
+        "./images/yuki/yuki_23.png",
+        "./images/yuki/yuki_24.png"
       ]
       const indexes = []
       const michopaDisplayImages = []
@@ -100,7 +114,7 @@
         // 表示をクリア
         context.clearRect(0, 0, 375, 375)
         // 文字を埋め込む時の大きさとフォント
-        context.font = '20px sans-serif'
+        context.font = '50px sans-serif'
 
         const randomInteger = Math.floor(Math.random() * 9)
         let counter = 0
@@ -137,10 +151,8 @@
         return image
       }
 
-      function selectImage(event) {
-        // console.log({clientX: event.clientX})
+      function isSelectedImageYukipoyo(event) {
         const rect = event.target.getBoundingClientRect()
-        // console.log({left: rect.left})
         const mouseCoordinateX = event.clientX - Math.floor(rect.left)
         const mouseCoordinateY = event.clientY - Math.floor(rect.top)
 
@@ -150,13 +162,17 @@
           mouseCoordinateY > answerCoordinateY &&
           mouseCoordinateY < answerCoordinateY + 125
         ) {
-          console.log("yes!!!!!!!!!!")
+          context.fillStyle = "#FF0000";
+          context.fillText("ゆきぽよ発見！！", 10, 188)
+        } else {
+          context.font = '35px sans-serif'
+          context.fillStyle = "blue";
+          context.fillText("それみちょぱな😭😭", 20, 188)
         }
       }
 
       window.onload = () => {
         drawImage()
-        // console.log(answerCoordinateX, answerCoordinateY)
       }
     </script>
   </body>
