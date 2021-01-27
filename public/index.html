@@ -37,7 +37,23 @@
 
       #timer-text {
         font-size: 30px;
-        color: red;
+        color: #EE4056;
+        font-weight: bold;
+      }
+
+      #start-game-button {
+        background-color: #EE4056;
+        color: white;
+        font-size: 16px;
+        border-style: none;
+        padding: 10px;
+        text-align: center;        
+      }
+
+      #timer-wrap {
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
       }
 
     </style>
@@ -52,17 +68,20 @@
       <canvas id="canvas" class="center" width="375" height="375" onclick="selectImage(event)"></canvas>
     </div>
 
-    <div class="timer-wrap center">
-      <span>残り<span id="timer-text">3</span>秒</span>
+    <div id="timer-wrap" class="center" style="display: none;">
+      <span>残り<span id="timer-text">4</span>秒</span>
     </div>
 
-    <div class="start-game-button-wrap center">
+    <div class="start-game-wrap center">
       <button id="start-game-button" onclick="startGame(drawImages)">ゲームスタート</button>
     </div>
     <script type="text/javascript" src="./js/generateImageURLs.js"></script>
     <script type="text/javascript" src="./js/drawContextHandler.js"></script>
     <script type="text/javascript" src="./js/gameHandler.js"></script>
     <script>
+      const timerElement = document.getElementById("timer-text")
+      const timerWrap = document.getElementById("timer-wrap")
+      const startButtonElement = document.getElementById("start-game-button")
       let michopaDisplayImages = []
       let yukipoyoDisplayImage = new Image()
       let yukipoyoCommentImage = null
@@ -75,8 +94,6 @@
       const context = canvas.getContext("2d")
       let answerCoordinateX = 0 //　正解の画像の座標X
       let answerCoordinateY = 0 //　正解の画像の座標Y
-      const timerElement = document.getElementById("timer-text")
-      const startButtonElement = document.getElementById("start-game-button")
       let currentTimerId
       let isGameOver = false
       let foundYukipoyoCount = 0
@@ -123,11 +140,13 @@
       }
 
       function hideStartButton () {
-        startButtonElement.style.visibility = "hidden"
+        startButtonElement.style.display = "none"
+        timerWrap.style.display = "block"
       }
 
       function showStartButton () {
-        startButtonElement.style.visibility = "visible"
+        startButtonElement.style.display = "inline"
+        timerWrap.style.display ="none"
       }
 
       window.onload = () => {

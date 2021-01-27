@@ -63,7 +63,7 @@ function drawYukipoyoFound () {
   context.fillStyle = 'rgba(255,255,255,0.8)'
   context.fillRect(0, 0, 375, 375)
   context.font = '40px sans-serif'
-  context.fillStyle = "red"
+  context.fillStyle = "#EE4056"
   context.fillText("ゆきぽよ発見🎉!!!", 25, 188)
 }
 
