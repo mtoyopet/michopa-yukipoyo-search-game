@@ -70,7 +70,7 @@ function drawYukipoyoFound () {
 function drawYukipoyoComment () {
   context.drawImage(yukipoyoCommentImage, 30, 250, 125, 125)
   context.drawImage(fukidashiImage, 120, 240, 250, 120)
-  context.font = '18px sans-serif'
+  context.font = '14px sans-serif'
   context.fillStyle = "black"
   comment = yukipoyoComment()
   context.fillText(comment, 163, 305)
@@ -92,18 +92,22 @@ function loadYukipoyoCommentImage () {
 
 function yukipoyoComment () {
   if (foundYukipoyoCount < 5) {
-    return "もっと真剣に探して!!" 
+    return "もっと真剣に探しなさい!!" 
   } else if (foundYukipoyoCount >= 5 || foundYukipoyoCount < 10) {
-    return "・・・集中してた？"
+    return "・・ちゃんと集中してた？"
   } else if (foundYukipoyoCount >= 10 || foundYukipoyoCount < 15) {
-    return "やっとスタートラインね"
+    return "やっとスタートラインね!!"
   } else if (foundYukipoyoCount >= 15 || foundYukipoyoCount < 20) {
-    return "慣れてきた感じ？？"
+    return "やっと慣れてきた感じね？"
   } else if (foundYukipoyoCount >= 20 || foundYukipoyoCount < 25) {
-    return "私のファンでしょ？"
+    return "もしかして私のファン？？"
   } else if (foundYukipoyoCount >= 25 || foundYukipoyoCount < 30) {
-    return "いいね、その調子!!"
-  } else {
-    return "ゆきぽよファン最高!"
+    return "いいわね、その調子よ!!"
+  } else if (foundYukipoyoCount >= 30 || foundYukipoyoCount < 35) {
+    return "まだまだいけるんじゃない?"
+  } else if (foundYukipoyoCount >= 35 || foundYukipoyoCount < 40) {
+    return "あともう少し頑張れるわよ!"
+  } else if (foundYukipoyoCount >= 40 || foundYukipoyoCount < 45) {
+    return "最高ね・・褒めてあげるわ"
   }
 }
