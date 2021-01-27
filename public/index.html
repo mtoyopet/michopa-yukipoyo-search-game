@@ -3,8 +3,8 @@
   <head>
     <title>ゆきぽよを探せ！ゲーム</title>
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="株式会社X-HACK" />
-    <meta property="og:description" content="間違い探しゲームです" />
+    <meta property="og:title" content="ゆきぽよを探せ！ゲーム" />
+    <meta property="og:description" content="JavaScriptで作ったゆきぽよを探すゲームです" />
     <meta
       property="og:image"
       content="https://js-hack.s3-ap-northeast-1.amazonaws.com/%E9%96%93%E9%81%95%E3%81%84+%E3%81%95%E3%81%8B%E3%82%99%E3%81%97.png"
@@ -53,18 +53,20 @@
     </div>
 
     <div class="timer-wrap center">
-      <span id="timer-text">4</span><span>秒以内に探せ！</span>
+      <span>残り<span id="timer-text">3</span>秒</span>
     </div>
 
     <div class="start-game-button-wrap center">
       <button id="start-game-button" onclick="startGame(drawImages)">ゲームスタート</button>
     </div>
-    <script type="text/javascript" src="./js/foundYukipoyoCountHandler.js"></script>
     <script type="text/javascript" src="./js/generateImageURLs.js"></script>
+    <script type="text/javascript" src="./js/drawContextHandler.js"></script>
     <script type="text/javascript" src="./js/gameHandler.js"></script>
     <script>
       let michopaDisplayImages = []
       let yukipoyoDisplayImage = new Image()
+      let yukipoyoCommentImage = null
+      let fukidashiImage = null
       const yukipoyoImagesLength = 24
       const michopaImagesLength = 17
       // canvas要素を取得
@@ -84,21 +86,10 @@
         clearInterval(currentTimerId)
 
         if (isYukipoyoSelected(event)) {
-          context.fillStyle = 'rgba(255,255,255,0.8)'
-          context.fillRect(0, 0, 375, 375)
-          context.font = '40px sans-serif'
-          context.fillStyle = "red"
-          context.fillText("ゆきぽよ発見🎉!!!", 25, 188)
+          drawYukipoyoFound()
           foundYukipoyoCount++
         } else {
-          isGameOver = true
-          context.fillStyle = 'rgba(0,0,0,0.8)'
-          context.fillRect(0, 0, 375, 375)
-          context.font = '35px sans-serif'
-          context.fillStyle = "yellow"
-          context.fillText("それ、みちょぱ😭😭", 30, 188)
-          drawFoundYukipoyoCount()
-          showStartButton()
+          gameOver("michopaClicked")
         }
 
         if (isGameOver) { return }
@@ -112,7 +103,7 @@
       function startTimer () {
         let timeLeft = parseInt(timerElement.innerText)
         if (timeLeft <= 1) {
-          gameOver()
+          gameOver("timeOver")
           clearInterval(currentTimerId)
         } else {
           timerElement.innerText = (timeLeft - 1).toString()
@@ -124,18 +115,11 @@
         const mouseCoordinateX = event.clientX - Math.floor(rect.left)
         const mouseCoordinateY = event.clientY - Math.floor(rect.top)
 
+        // ゆきぽよの画像が選ばれているか
         return (mouseCoordinateX > answerCoordinateX &&
                 mouseCoordinateX < answerCoordinateX + 125 &&
                 mouseCoordinateY > answerCoordinateY &&
                 mouseCoordinateY < answerCoordinateY + 125)
-      }
-
-      function drawMenu() {
-        context.fillStyle = 'pink'
-        context.fillRect(0, 0, 375, 375)
-        context.font = '30px sans-serif'
-        context.fillStyle = "grey"
-        context.fillText("ゆきぽよを探そう!", 60, 188)
       }
 
       function hideStartButton () {
@@ -148,6 +132,7 @@
 
       window.onload = () => {
         drawMenu()
+        loadYukipoyoCommentImage()
       }
     </script>
   </body>

@@ -11,44 +11,18 @@ function startGame(callback) {
   yukipoyoDisplayImage.onload = () => callback()
 }
 
-function drawImages() {
-  // 表示をクリア
-  context.clearRect(0, 0, 375, 375)
-  // 文字を埋め込む時の大きさとフォント
-  context.font = '50px sans-serif'
-  const randomInteger = Math.floor(Math.random() * 9)
-  let counter = 0
-
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      const coordinateX = 125 * i
-      const coordinateY = 125 * j
-      if (randomInteger === counter) {
-        // ゆきぽよの画像を表示する
-        context.drawImage(yukipoyoDisplayImage, coordinateX, coordinateY, 125, 125)
-        // 答えの座標をセットする
-        answerCoordinateX = coordinateX
-        answerCoordinateY = coordinateY
-      } else {
-        // みちょぱの画像を表示する
-        context.drawImage(michopaDisplayImages[counter], coordinateX, coordinateY, 125, 125)
-      }
-      counter += 1
-    }
-  }
-  setTimerInterval()
-}
-
-function gameOver () {
+function gameOver (type) {
   isGameOver = true
-  context.fillStyle = 'rgba(0,0,0,1)'
-  context.fillRect(0, 0, 375, 375)
-  context.font = '35px sans-serif'
-  context.fillStyle = "yellow"
-  context.fillText("ゲームオーバー💀🦴", 30, 188)
+
+  if (type === "michopaClicked") {
+    drawMichopaSelected()
+  } else if (type === "timeOver") {
+    drawGameOver()
+  }
+
   drawFoundYukipoyoCount()
-  timerElement.innerText = 0
   showStartButton()
+  timerElement.innerText = 0
 }
 
 function setTimerInterval () {
