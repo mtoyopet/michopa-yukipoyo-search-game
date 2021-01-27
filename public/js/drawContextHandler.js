@@ -93,21 +93,21 @@ function loadYukipoyoCommentImage () {
 function yukipoyoComment () {
   if (foundYukipoyoCount < 5) {
     return "もっと真剣に探しなさい!!" 
-  } else if (foundYukipoyoCount >= 5 || foundYukipoyoCount < 10) {
+  } else if (foundYukipoyoCount >= 5 && foundYukipoyoCount < 10) {
     return "・・ちゃんと集中してた？"
-  } else if (foundYukipoyoCount >= 10 || foundYukipoyoCount < 15) {
+  } else if (foundYukipoyoCount >= 10 && foundYukipoyoCount < 15) {
     return "やっとスタートラインね!!"
-  } else if (foundYukipoyoCount >= 15 || foundYukipoyoCount < 20) {
+  } else if (foundYukipoyoCount >= 15 && foundYukipoyoCount < 20) {
     return "やっと慣れてきた感じね？"
-  } else if (foundYukipoyoCount >= 20 || foundYukipoyoCount < 25) {
+  } else if (foundYukipoyoCount >= 20 && foundYukipoyoCount < 25) {
     return "もしかして私のファン？？"
-  } else if (foundYukipoyoCount >= 25 || foundYukipoyoCount < 30) {
+  } else if (foundYukipoyoCount >= 25 && foundYukipoyoCount < 30) {
     return "いいわね、その調子よ!!"
-  } else if (foundYukipoyoCount >= 30 || foundYukipoyoCount < 35) {
+  } else if (foundYukipoyoCount >= 30 && foundYukipoyoCount < 35) {
     return "まだまだいけるんじゃない?"
-  } else if (foundYukipoyoCount >= 35 || foundYukipoyoCount < 40) {
+  } else if (foundYukipoyoCount >= 35 && foundYukipoyoCount < 40) {
     return "あともう少し頑張れるわよ!"
-  } else if (foundYukipoyoCount >= 40 || foundYukipoyoCount < 45) {
+  } else if (foundYukipoyoCount >= 40 && foundYukipoyoCount < 45) {
     return "最高ね・・褒めてあげるわ"
   } else {
     return "あなたこそ私の真のファン!"
