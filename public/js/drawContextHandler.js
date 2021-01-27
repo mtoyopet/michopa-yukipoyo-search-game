@@ -109,5 +109,7 @@ function yukipoyoComment () {
     return "あともう少し頑張れるわよ!"
   } else if (foundYukipoyoCount >= 40 || foundYukipoyoCount < 45) {
     return "最高ね・・褒めてあげるわ"
+  } else {
+    return "あなたこそ私の真のファン!"
   }
 }
