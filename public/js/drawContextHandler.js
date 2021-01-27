@@ -91,7 +91,9 @@ function loadYukipoyoCommentImage () {
 }
 
 function yukipoyoComment () {
-  if (foundYukipoyoCount < 5) {
+  if (foundYukipoyoCount === 0) {
+    return "・・・・・やる気あるの？"
+  } else if (foundYukipoyoCount >= 1 && foundYukipoyoCount < 5) {
     return "もっと真剣に探しなさい!!" 
   } else if (foundYukipoyoCount >= 5 && foundYukipoyoCount < 10) {
     return "・・ちゃんと集中してた？"
