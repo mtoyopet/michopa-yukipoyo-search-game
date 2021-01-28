@@ -7,6 +7,7 @@ const imagesLengthObject = {
 function generateHazureImageObject () {
   let counter = 0
   for (key in imagesLengthObject) {
+    if (key === "yukipoyo") { continue }
     counter++
     for (let i = 1; i <= imagesLengthObject[key]; i++) {
       let image = new Image()
@@ -15,8 +16,7 @@ function generateHazureImageObject () {
       }
       image.src = `./images/${key}/${i}.png`
       image.personName = key
-      image.titleText = key === "michopa" ? "それ、みちょぱ😭😭" : "アンミカやないかい・・・"
-
+      image.titleText = key === "michopa" ? "それ、みちょぱな😭😭" : "節子、それアンミカや"
       hazureImagesObject[counter] = image
       counter++
     }
@@ -29,7 +29,7 @@ function generateHazureImagesArray () {
   let images = []
   let length = calculateImagesLength()
 
-  while (indexes.length < 10) {
+  while (indexes.length < 9) {
     const index = randomInt(length)
     if (!indexes.includes(index)) {
       if (!hazureImagesObject[index]) { continue }
@@ -49,11 +49,11 @@ function calculateImagesLength () {
 }
 
 function selectYukipoyoImage () {
-  const index = randomInt(imagesLengthObject.yukipoyo)
-  let image = new Image()
-  image.onload = () => {
+  const index = randomInt(imagesLengthObject.yukipoyo) + 1
+  yukipoyoDisplayImageObject = new Image()
+  yukipoyoDisplayImageObject.onload = () => {
     console.log("image loaded")
   }
-  image.src = `./images/yukipoyo/${index}.png`
-  return image
+  yukipoyoDisplayImageObject.src = `./images/yukipoyo/${index}.png`
+  console.log(yukipoyoDisplayImageObject.src)
 }

@@ -6,15 +6,16 @@ function startGame(callback) {
   hazureImagesArray = generateHazureImagesArray()
 
   // ゆきぽよの画像を１枚選ぶ  
-  yukipoyoDisplayImage = selectYukipoyoImage()
+  selectYukipoyoImage()
   callback()
 }
 
-function gameOver (type) {
+function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
   isGameOver = true
-
+  const selectedImageObject = findSelectedImage(mouseCoordinateX, mouseCoordinateY)
+  console.log({ src: selectedImageObject.src, text: selectedImageObject.personName })
   if (type === "hazureImageClicked") {
-    drawHazureImageSelectedMenu()
+    drawHazureImageSelectedMenu(selectedImageObject)
   } else if (type === "timeOver") {
     drawTimeOverMenu()
   }
@@ -31,4 +32,17 @@ function setTimerInterval () {
 
 function randomInt(max) {
   return Math.floor(Math.random() * Math.floor(max))
+}
+
+function findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
+  for (let image of hazureImagesArray) {
+    if (
+      mouseCoordinateX > image.coordinateX &&
+      mouseCoordinateX < image.coordinateX + 125 &&
+      mouseCoordinateY > image.coordinateY &&
+      mouseCoordinateY < image.coordinateY + 125
+    ) {
+      return image
+    }
+  }
 }

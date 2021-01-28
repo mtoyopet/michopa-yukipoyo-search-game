@@ -1,8 +1,6 @@
 function drawImages() {
   // 表示をクリア
   context.clearRect(0, 0, 375, 375)
-  // 文字を埋め込む時の大きさとフォント
-  context.font = '50px sans-serif'
   const randomInteger = Math.floor(Math.random() * 9)
   let counter = 0
 
@@ -12,12 +10,14 @@ function drawImages() {
       const coordinateY = 125 * j
       if (randomInteger === counter) {
         // ゆきぽよの画像を表示する
-        context.drawImage(yukipoyoDisplayImage, coordinateX, coordinateY, 125, 125)
+        context.drawImage(yukipoyoDisplayImageObject, coordinateX, coordinateY, 125, 125)
         // 答えの座標をセットする
-        answerCoordinateX = coordinateX
-        answerCoordinateY = coordinateY
+        yukipoyoDisplayImageObject.coordinateX = coordinateX  //　正解の画像の座標X
+        yukipoyoDisplayImageObject.coordinateY = coordinateY //　正解の画像の座標Y
       } else {
-        // みちょぱの画像を表示する
+        // 外れ画像を表示する
+        hazureImagesArray[counter].coordinateX = coordinateX
+        hazureImagesArray[counter].coordinateY = coordinateY
         context.drawImage(hazureImagesArray[counter], coordinateX, coordinateY, 125, 125)
       }
       counter += 1
@@ -41,12 +41,13 @@ function drawFoundYukipoyoCountText() {
   foundYukipoyoCount = 0
 }
 
-function drawHazureImageSelectedMenu () {
+function drawHazureImageSelectedMenu (selectedImageObject) {
+
   context.fillStyle = 'rgba(0,0,0,0.8)'
   context.fillRect(0, 0, 375, 375)
-  context.font = '35px sans-serif'
+  context.font = '30px sans-serif'
   context.fillStyle = "yellow"
-  context.fillText("それ、みちょぱ😭😭", 30, 188)
+  context.fillText(selectedImageObject.titleText, 35, 188)
   drawYukipoyoCommentText()
 }
 
