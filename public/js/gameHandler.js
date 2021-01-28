@@ -6,8 +6,7 @@ function startGame(callback) {
   hazureImagesArray = generateHazureImagesArray()
 
   // ゆきぽよの画像を１枚選ぶ  
-  selectYukipoyoImage()
-  callback()
+  selectYukipoyoImage(callback)
 }
 
 function gameOver (type, mouseCoordinateX, mouseCoordinateY) {

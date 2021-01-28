@@ -48,12 +48,11 @@ function calculateImagesLength () {
   return length
 }
 
-function selectYukipoyoImage () {
+function selectYukipoyoImage (callback) {
   const index = randomInt(imagesLengthObject.yukipoyo) + 1
   yukipoyoDisplayImageObject = new Image()
-  yukipoyoDisplayImageObject.onload = () => {
-    console.log("image loaded")
-  }
   yukipoyoDisplayImageObject.src = `./images/yukipoyo/${index}.png`
-  console.log(yukipoyoDisplayImageObject.src)
+  yukipoyoDisplayImageObject.onload = () => {
+    callback()
+  }
 }
