@@ -79,20 +79,18 @@
     <script type="text/javascript" src="./js/hazureImageObjectHandler.js"></script>
     <script type="text/javascript" src="./js/drawContextHandler.js"></script>
     <script type="text/javascript" src="./js/gameHandler.js"></script>
+    <script type="text/javascript" src="./js/gameObject.js"></script>
     <script>
       const timerElement = document.getElementById("timer-text")
       const timerWrap = document.getElementById("timer-wrap")
       const startButtonElement = document.getElementById("start-game-button")
+      const canvas = document.getElementById("canvas") // canvas要素を取得
+      const gameScreenCtx = canvas.getContext("2d")  // canvasを操作する機能を持った、オブジェクトを取り出す
       let isImageSelected = false
       let hazureImagesObject = {}
       let hazureImagesArray = []
       let yukipoyoDisplayImageObject
       let yukipoyoCommentImage, kurochanCommentImage, fukidashiImage
-
-      // canvas要素を取得
-      const canvas = document.getElementById("canvas")
-      // canvasを操作する機能を持った、オブジェクトを取り出す
-      const context = canvas.getContext("2d")
       let currentTimerId
       let isGameOver = false
       let foundYukipoyoCount = 0

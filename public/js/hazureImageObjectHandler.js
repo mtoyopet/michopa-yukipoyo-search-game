@@ -11,10 +11,7 @@ function generateHazureImageObject () {
     if (key === "yukipoyo") { continue }
     counter++
     for (let i = 1; i <= imagesLengthObject[key]; i++) {
-      let image = new Image()
-      image.src = `./images/${key}/${i}.png`
-      image.personName = key
-      image.titleText = defineTitleText(key)
+      let image = new GameObject(`./images/${key}/${i}.png`, key)
       hazureImagesObject[counter] = image
       counter++
     }
@@ -47,12 +44,3 @@ function calculateImagesLength () {
 }
 
 
-function defineTitleText (key) {
-  if (key === "michopa") {
-    return "それ、みちょぱな😭😭"
-  } else if (key === "anmika") {
-    return "節子、それアンミカや"
-  } else if (key === "kurochan") {
-    return "わわわわあぁ〜〜♡♡"
-  }
-}
