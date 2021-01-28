@@ -11,9 +11,6 @@ function generateHazureImageObject () {
     counter++
     for (let i = 1; i <= imagesLengthObject[key]; i++) {
       let image = new Image()
-      image.onload = () => {
-        console.log("image loaded")
-      }
       image.src = `./images/${key}/${i}.png`
       image.personName = key
       image.titleText = key === "michopa" ? "それ、みちょぱな😭😭" : "節子、それアンミカや"
@@ -46,13 +43,4 @@ function calculateImagesLength () {
     length = length + imagesLengthObject[key]
   }
   return length
-}
-
-function selectYukipoyoImage (callback) {
-  const index = randomInt(imagesLengthObject.yukipoyo) + 1
-  yukipoyoDisplayImageObject = new Image()
-  yukipoyoDisplayImageObject.src = `./images/yukipoyo/${index}.png`
-  yukipoyoDisplayImageObject.onload = () => {
-    callback()
-  }
 }

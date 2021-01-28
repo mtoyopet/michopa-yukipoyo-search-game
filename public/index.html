@@ -83,6 +83,7 @@
       const timerElement = document.getElementById("timer-text")
       const timerWrap = document.getElementById("timer-wrap")
       const startButtonElement = document.getElementById("start-game-button")
+      let isImageSelected = false
       let hazureImagesObject = {}
       let hazureImagesArray = []
       let yukipoyoDisplayImageObject
@@ -97,8 +98,9 @@
       let foundYukipoyoCount = 0
 
       function selectImage(event) {
+        if (isImageSelected || isGameOver) { return }
         clearInterval(currentTimerId)
-        if (isGameOver) { return }
+        isImageSelected = true
 
         const rect = event.target.getBoundingClientRect()
         const mouseCoordinateX = event.clientX - Math.floor(rect.left)
@@ -106,15 +108,13 @@
         if (isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
           drawYukipoyoFoundMenu()
           foundYukipoyoCount++
+          setTimeout(() => {
+            startGame(drawImages)
+            isImageSelected = false
+          }, 500)
         } else {
           gameOver("hazureImageClicked", mouseCoordinateX, mouseCoordinateY)
         }
-
-        if (isGameOver) { return }
-
-        setTimeout(() => {
-          startGame(drawImages)
-        }, 700)
       }
 
       function startTimer () {

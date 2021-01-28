@@ -1,4 +1,6 @@
 function drawImages() {
+  if (isGameOver) { return }
+
   // 表示をクリア
   context.clearRect(0, 0, 375, 375)
   const randomInteger = Math.floor(Math.random() * 9)
@@ -42,7 +44,6 @@ function drawFoundYukipoyoCountText() {
 }
 
 function drawHazureImageSelectedMenu (selectedImageObject) {
-
   context.fillStyle = 'rgba(0,0,0,0.8)'
   context.fillRect(0, 0, 375, 375)
   context.font = '30px sans-serif'
@@ -79,15 +80,9 @@ function drawYukipoyoCommentText () {
 
 function loadYukipoyoCommentImage () {
   yukipoyoCommentImage = new Image()
-  yukipoyoCommentImage.onload = () => {
-    console.log("image loaded")
-  }
   yukipoyoCommentImage.src = "./images/yukipoyo-removebg.png"
 
   fukidashiImage = new Image()
-  fukidashiImage.onload = () => {
-    console.log("image loaded")
-  }
   fukidashiImage.src ="./images/fukidashi2.png"
 }
 

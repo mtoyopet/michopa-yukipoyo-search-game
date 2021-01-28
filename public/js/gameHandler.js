@@ -1,4 +1,5 @@
 function startGame(callback) {
+  isImageSelected = false
   isGameOver = false
   hideStartButton()
 
@@ -9,10 +10,18 @@ function startGame(callback) {
   selectYukipoyoImage(callback)
 }
 
+function selectYukipoyoImage (callback) {
+  const index = randomInt(imagesLengthObject.yukipoyo) + 1
+  yukipoyoDisplayImageObject = new Image()
+  yukipoyoDisplayImageObject.src = `./images/yukipoyo/${index}.png`
+  yukipoyoDisplayImageObject.onload = () => {
+    callback()
+  }
+}
+
 function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
   isGameOver = true
   const selectedImageObject = findSelectedImage(mouseCoordinateX, mouseCoordinateY)
-  console.log({ src: selectedImageObject.src, text: selectedImageObject.personName })
   if (type === "hazureImageClicked") {
     drawHazureImageSelectedMenu(selectedImageObject)
   } else if (type === "timeOver") {
