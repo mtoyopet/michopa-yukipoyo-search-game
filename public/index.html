@@ -84,8 +84,7 @@
       const timerElement = document.getElementById("timer-text")
       const timerWrap = document.getElementById("timer-wrap")
       const startButtonElement = document.getElementById("start-game-button")
-      const canvas = document.getElementById("canvas") // canvas要素を取得
-      const gameScreenCtx = canvas.getContext("2d")  // canvasを操作する機能を持った、オブジェクトを取り出す
+      const canvas = new canvasHandler()
       let isImageSelected = false
       let hazureImagesObject = {}
       let hazureImagesArray = []
@@ -104,7 +103,7 @@
         const mouseCoordinateX = event.clientX - Math.floor(rect.left)
         const mouseCoordinateY = event.clientY - Math.floor(rect.top)
         if (isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
-          drawYukipoyoFoundMenu()
+          canvas.drawYukipoyoSelectedMenu()
           hazureImagesArray = generateHazureImagesArray()
           foundYukipoyoCount++
           setTimeout(() => {
@@ -146,8 +145,8 @@
 
       window.onload = () => {
         generateHazureImageObject()
-        drawStartMenu()
-        loadCommentImages()
+        canvas.drawStartMenu()
+        loadGameOverMenuImages()
       }
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

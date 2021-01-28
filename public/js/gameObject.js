@@ -25,7 +25,7 @@ class GameObject {
 
   drawOnScreen(positionX, positionY) {
     this.updatePosition(positionX, positionY) 
-    gameScreenCtx.drawImage(this.image, positionX, positionY, this.size.width, this.size.height)
+    canvas.gameScreenCtx.drawImage(this.image, positionX, positionY, this.size.width, this.size.height)
   }
 
   updatePosition (positionX, positionY) {

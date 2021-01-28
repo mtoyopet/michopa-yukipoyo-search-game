@@ -21,12 +21,12 @@ function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
   isGameOver = true
   const selectedImageObject = findSelectedImage(mouseCoordinateX, mouseCoordinateY)
   if (type === "hazureImageClicked") {
-    drawHazureImageSelectedMenu(selectedImageObject)
+    canvas.drawHazureSelectedMenu(selectedImageObject)
   } else if (type === "timeOver") {
-    drawTimeOverMenu()
+    canvas.drawTimeOverMenu()
   }
 
-  drawFoundYukipoyoCountText()
+  canvas.drawFoundYukipoyoCountText()
   showStartButton()
   timerElement.innerText = 0
 }
@@ -51,4 +51,10 @@ function findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
       return image
     }
   }
+}
+
+function loadGameOverMenuImages () {
+  yukipoyoCommentImage = new GameObject("./images/yukipoyo-removebg.png", "yukipoyo")
+  kurochanCommentImage = new GameObject("./images/kurochan.png", "kurochan")
+  fukidashiImage = new GameObject("./images/fukidashi2.png", "fukidashi")
 }
