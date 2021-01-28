@@ -76,19 +76,19 @@
     <div class="start-game-wrap center">
       <button id="start-game-button" onclick="startGame(drawImages)">ゲームスタート</button>
     </div>
-    <script type="text/javascript" src="./js/generateImageURLs.js"></script>
+    <script type="text/javascript" src="./js/hazureImageObjectHandler.js"></script>
     <script type="text/javascript" src="./js/drawContextHandler.js"></script>
     <script type="text/javascript" src="./js/gameHandler.js"></script>
     <script>
       const timerElement = document.getElementById("timer-text")
       const timerWrap = document.getElementById("timer-wrap")
       const startButtonElement = document.getElementById("start-game-button")
-      let michopaDisplayImages = []
+      let hazureImagesObject = {}
+      let hazureImagesArray = []
       let yukipoyoDisplayImage = new Image()
       let yukipoyoCommentImage = null
       let fukidashiImage = null
       const yukipoyoImagesLength = 31
-      const michopaImagesLength = 28
       // canvas要素を取得
       const canvas = document.getElementById("canvas")
       // canvasを操作する機能を持った、オブジェクトを取り出す
@@ -113,7 +113,6 @@
         if (isGameOver) { return }
 
         setTimeout(() => {
-          michopaDisplayImages = []
           startGame(drawImages)
         }, 700)
       }
@@ -151,6 +150,7 @@
       }
 
       window.onload = () => {
+        generateHazureImageObject()
         drawMenu()
         loadYukipoyoCommentImage()
       }

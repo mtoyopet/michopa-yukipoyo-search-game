@@ -18,7 +18,7 @@ function drawImages() {
         answerCoordinateY = coordinateY
       } else {
         // みちょぱの画像を表示する
-        context.drawImage(michopaDisplayImages[counter], coordinateX, coordinateY, 125, 125)
+        context.drawImage(hazureImagesArray[counter], coordinateX, coordinateY, 125, 125)
       }
       counter += 1
     }

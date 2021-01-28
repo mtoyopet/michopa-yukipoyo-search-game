@@ -3,7 +3,8 @@ function startGame(callback) {
   hideStartButton()
 
   // みちょぱの画像を8枚選ぶ
-  michopaDisplayImages = new imageObjectsArray("michopa", michopaImagesLength).generateArray()
+  hazureImagesArray = generateHazureImagesArray()
+  console.log({ hazureImagesArray })
 
   // ゆきぽよの画像を１枚選ぶ
   const index = randomInt(yukipoyoImagesLength)
