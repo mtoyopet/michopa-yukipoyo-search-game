@@ -22,6 +22,8 @@ function startGame () {
 }
 
 function selectImage(event) {
+  if (state.currentNumber !== state.stageNumbers.imageBeingSelected) { return }
+
   clearInterval(currentTimerId)
   state.update("imageSelected")
 
