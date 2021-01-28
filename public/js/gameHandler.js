@@ -13,13 +13,13 @@ function startGame(callback) {
 function gameOver (type) {
   isGameOver = true
 
-  if (type === "michopaClicked") {
-    drawMichopaSelected()
+  if (type === "hazureImageClicked") {
+    drawHazureImageSelectedMenu()
   } else if (type === "timeOver") {
-    drawGameOver()
+    drawTimeOverMenu()
   }
 
-  drawFoundYukipoyoCount()
+  drawFoundYukipoyoCountText()
   showStartButton()
   timerElement.innerText = 0
 }

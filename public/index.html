@@ -102,10 +102,10 @@
         if (isGameOver) { return }
 
         if (isYukipoyoSelected(event)) {
-          drawYukipoyoFound()
+          drawYukipoyoFoundMenu()
           foundYukipoyoCount++
         } else {
-          gameOver("michopaClicked")
+          gameOver("hazureImageClicked")
         }
 
         if (isGameOver) { return }
@@ -149,7 +149,7 @@
 
       window.onload = () => {
         generateHazureImageObject()
-        drawMenu()
+        drawStartMenu()
         loadYukipoyoCommentImage()
       }
     </script>

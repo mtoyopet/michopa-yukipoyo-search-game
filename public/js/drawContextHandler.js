@@ -26,7 +26,7 @@ function drawImages() {
   setTimerInterval()
 }
 
-function drawMenu() {
+function drawStartMenu() {
   context.fillStyle = 'pink'
   context.fillRect(0, 0, 375, 375)
   context.font = '30px sans-serif'
@@ -34,32 +34,32 @@ function drawMenu() {
   context.fillText("ゆきぽよを探そう!", 60, 188)
 }
 
-function drawFoundYukipoyoCount() {
+function drawFoundYukipoyoCountText() {
   context.font = '15px sans-serif'
   context.fillStyle = "white"
   context.fillText(`${foundYukipoyoCount}ゆきぽよはっけ〜ん`, 110, 220)
   foundYukipoyoCount = 0
 }
 
-function drawMichopaSelected () {
+function drawHazureImageSelectedMenu () {
   context.fillStyle = 'rgba(0,0,0,0.8)'
   context.fillRect(0, 0, 375, 375)
   context.font = '35px sans-serif'
   context.fillStyle = "yellow"
   context.fillText("それ、みちょぱ😭😭", 30, 188)
-  drawYukipoyoComment()
+  drawYukipoyoCommentText()
 }
 
-function drawGameOver () {
+function drawTimeOverMenu () {
   context.fillStyle = 'rgba(0,0,0,1)'
   context.fillRect(0, 0, 375, 375)
   context.font = '35px sans-serif'
   context.fillStyle = "yellow"
-  context.fillText("ゲームオーバー💀🦴", 30, 188)
-  drawYukipoyoComment()
+  context.fillText("タイムオーバー💀🦴", 30, 188)
+  drawYukipoyoCommentText()
 }
 
-function drawYukipoyoFound () {
+function drawYukipoyoFoundMenu () {
   context.fillStyle = 'rgba(255,255,255,0.8)'
   context.fillRect(0, 0, 375, 375)
   context.font = '40px sans-serif'
@@ -67,7 +67,7 @@ function drawYukipoyoFound () {
   context.fillText("ゆきぽよ発見🎉!!!", 25, 188)
 }
 
-function drawYukipoyoComment () {
+function drawYukipoyoCommentText () {
   context.drawImage(yukipoyoCommentImage, 30, 250, 125, 125)
   context.drawImage(fukidashiImage, 120, 240, 250, 120)
   context.font = '14px sans-serif'
