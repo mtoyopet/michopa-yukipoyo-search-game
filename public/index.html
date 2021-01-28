@@ -128,10 +128,10 @@
 
       function isYukipoyoSelected (mouseCoordinateX, mouseCoordinateY) {
         // ゆきぽよの画像が選ばれているか
-        return (mouseCoordinateX > yukipoyoDisplayImageObject.coordinateX &&
-                mouseCoordinateX < yukipoyoDisplayImageObject.coordinateX + 125 &&
-                mouseCoordinateY > yukipoyoDisplayImageObject.coordinateY &&
-                mouseCoordinateY < yukipoyoDisplayImageObject.coordinateY + 125)
+        return (mouseCoordinateX > yukipoyoDisplayImageObject.position.x &&
+                mouseCoordinateX < yukipoyoDisplayImageObject.position.x + 125 &&
+                mouseCoordinateY > yukipoyoDisplayImageObject.position.y &&
+                mouseCoordinateY < yukipoyoDisplayImageObject.position.y + 125)
       }
 
       function hideStartButton () {

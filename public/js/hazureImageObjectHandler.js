@@ -11,8 +11,8 @@ function generateHazureImageObject () {
     if (key === "yukipoyo") { continue }
     counter++
     for (let i = 1; i <= imagesLengthObject[key]; i++) {
-      let image = new GameObject(`./images/${key}/${i}.png`, key)
-      hazureImagesObject[counter] = image
+      let gameObject = new GameObject(`./images/${key}/${i}.png`, key)
+      hazureImagesObject[counter] = gameObject
       counter++
     }
   }

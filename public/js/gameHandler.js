@@ -5,15 +5,14 @@ function startGame(callback) {
   // 外れの画像の配列を作る
   hazureImagesArray = generateHazureImagesArray()
 
-  // ゆきぽよの画像を１枚選ぶ  
+  // ゆきぽよの画像を１枚選ぶ
   selectYukipoyoImage(callback)
 }
 
 function selectYukipoyoImage (callback) {
   const index = randomInt(imagesLengthObject.yukipoyo) + 1
-  yukipoyoDisplayImageObject = new Image()
-  yukipoyoDisplayImageObject.src = `./images/yukipoyo/${index}.png`
-  yukipoyoDisplayImageObject.onload = () => {
+  yukipoyoDisplayImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
+  yukipoyoDisplayImageObject.image.onload = () => {
     callback()
   }
 }
@@ -44,10 +43,10 @@ function randomInt(max) {
 function findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
   for (let image of hazureImagesArray) {
     if (
-      mouseCoordinateX > image.coordinateX &&
-      mouseCoordinateX < image.coordinateX + 125 &&
-      mouseCoordinateY > image.coordinateY &&
-      mouseCoordinateY < image.coordinateY + 125
+      mouseCoordinateX > image.position.x &&
+      mouseCoordinateX < image.position.x + 125 &&
+      mouseCoordinateY > image.position.y &&
+      mouseCoordinateY < image.position.y + 125
     ) {
       return image
     }

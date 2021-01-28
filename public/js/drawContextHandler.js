@@ -12,10 +12,7 @@ function drawImages() {
       const coordinateY = 125 * j
       if (randomInteger === counter) {
         // ゆきぽよの画像を表示する
-        // gameScreenCtx.drawImage(yukipoyoDisplayImageObject, coordinateX, coordinateY, 125, 125)
-        // // 答えの座標をセットする
-        // yukipoyoDisplayImageObject.coordinateX = coordinateX  //　正解の画像の座標X
-        // yukipoyoDisplayImageObject.coordinateY = coordinateY //　正解の画像の座標Y
+        yukipoyoDisplayImageObject.drawOnScreen(coordinateX, coordinateY)
       } else {
         // 外れ画像を表示する
         hazureImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
@@ -51,8 +48,8 @@ function drawHazureImageSelectedMenu (selectedImageObject) {
   gameScreenCtx.fillRect(0, 0, 375, 375)
   gameScreenCtx.font = '30px sans-serif'
   gameScreenCtx.fillStyle = "yellow"
-  gameScreenCtx.fillText(selectedImageObject.titleText, 35, 188)
-  drawCommentText(selectedImageObject.personName)
+  gameScreenCtx.fillText(selectedImageObject.image.titleText, 35, 188)
+  drawCommentText(selectedImageObject.image.personName)
 }
 
 function drawTimeOverMenu (personName) {
@@ -99,7 +96,6 @@ function loadCommentImages () {
   fukidashiImage = new Image()
   fukidashiImage.src ="./images/fukidashi2.png"
 }
-
 
 function yukipoyoComment () {
   if (foundYukipoyoCount === 0) {

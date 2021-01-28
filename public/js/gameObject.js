@@ -4,7 +4,12 @@ class GameObject {
     this.image.src = src
     this.image.personName = personName
     this.image.titleText = defineTitleText(personName)
-    this.size = new Size(125, 125)
+    this.size = new Size(width, height)
+    this.isLoaded = false
+    this.position = new Position(0, 0)
+    this.image.onload = () => {
+      this.image.isLoaded = true
+    }
 
     function defineTitleText (personName) {
       if (personName === "michopa") {
@@ -14,6 +19,7 @@ class GameObject {
       } else if (personName === "kurochan") {
         return "わわわわあぁ〜〜♡♡"
       }
+      return ""
     }
   }
 
@@ -23,7 +29,8 @@ class GameObject {
   }
 
   updatePosition (positionX, positionY) {
-    this.position = new Position(positionX, positionY)
+    this.position.x = positionX
+    this.position.y = positionY
   }
 }
 
