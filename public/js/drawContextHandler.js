@@ -75,19 +75,19 @@ function drawYukipoyoFoundMenu () {
 }
 
 function drawCommentText (personName) {
-  if (personName === "yukipoyo") {
-    context.drawImage(yukipoyoCommentImage, 30, 250, 125, 125)
-    context.drawImage(fukidashiImage, 120, 240, 250, 120)
-    context.font = '14px sans-serif'
-    context.fillStyle = "black"
-    comment = yukipoyoComment()
-    context.fillText(comment, 163, 305)
-  } else if (personName === "kurochan") {
+  if (personName === "kurochan") {
     context.drawImage(kurochanCommentImage, 30, 250, 125, 125)
     context.drawImage(fukidashiImage, 120, 240, 250, 120)
     context.font = '14px sans-serif'
     context.fillStyle = "black"
     context.fillText("君が大好きだしんよ♡♡♡", 163, 305)
+  } else {
+    context.drawImage(yukipoyoCommentImage, 30, 250, 125, 125)
+    context.drawImage(fukidashiImage, 120, 240, 250, 120)
+    context.font = '14px sans-serif'
+    context.fillStyle = "black"
+    comment = yukipoyoComment()
+    context.fillText(comment, 163, 305)    
   }
 }
 

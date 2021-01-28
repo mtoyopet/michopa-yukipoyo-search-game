@@ -53,6 +53,6 @@ function defineTitleText (key) {
   } else if (key === "anmika") {
     return "節子、それアンミカや"
   } else if (key === "kurochan") {
-    return "あわわわぁあ〜〜♡♡"
+    return "わわわわあぁ〜〜♡♡"
   }
 }
