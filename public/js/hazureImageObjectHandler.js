@@ -1,4 +1,5 @@
 const imagesLengthObject = {
+  yukipoyo: 31,
   michopa: 25,
   anmika: 3
 }
@@ -23,6 +24,7 @@ function generateHazureImageObject () {
 }
 
 function generateHazureImagesArray () {
+  // 表示する外れ画像の配列を作る
   let indexes = []
   let images = []
   let length = calculateImagesLength()
@@ -44,4 +46,14 @@ function calculateImagesLength () {
     length = length + imagesLengthObject[key]
   }
   return length
+}
+
+function selectYukipoyoImage () {
+  const index = randomInt(imagesLengthObject.yukipoyo)
+  let image = new Image()
+  image.onload = () => {
+    console.log("image loaded")
+  }
+  image.src = `./images/yukipoyo/${index}.png`
+  return image
 }

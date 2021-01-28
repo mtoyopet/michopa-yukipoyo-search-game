@@ -2,14 +2,12 @@ function startGame(callback) {
   isGameOver = false
   hideStartButton()
 
-  // みちょぱの画像を8枚選ぶ
+  // 外れの画像の配列を作る
   hazureImagesArray = generateHazureImagesArray()
-  console.log({ hazureImagesArray })
 
-  // ゆきぽよの画像を１枚選ぶ
-  const index = randomInt(yukipoyoImagesLength)
-  yukipoyoDisplayImage.src = `./images/yukipoyo/${index}.png`
-  yukipoyoDisplayImage.onload = () => callback()
+  // ゆきぽよの画像を１枚選ぶ  
+  yukipoyoDisplayImage = selectYukipoyoImage()
+  callback()
 }
 
 function gameOver (type) {
