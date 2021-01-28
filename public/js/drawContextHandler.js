@@ -5,7 +5,6 @@ class canvasHandler {
   }
 
   drawImages() {
-    if (isGameOver) { return }
     // 表示をクリア
     this.gameScreenCtx.clearRect(0, 0, 375, 375)
     const randomInteger = Math.floor(Math.random() * 9)

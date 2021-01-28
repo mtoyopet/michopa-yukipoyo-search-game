@@ -1,10 +1,7 @@
-function startGame() {
-  isImageSelected = false
-  isGameOver = false
-
+function getReady() {
+  if (![1, 2].includes(state.currentNumber)) { return }
   // 外れの画像の配列を作る
   hazureImagesArray = generateHazureImagesArray()
-
   // ゆきぽよの画像を１枚選ぶ
   selectYukipoyoImage()
 }
@@ -13,24 +10,56 @@ function selectYukipoyoImage () {
   const index = randomInt(imagesLengthObject.yukipoyo) + 1
   yukipoyoDisplayImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
   yukipoyoDisplayImageObject.image.onload = () => {
-    canvas.drawImages()
-    hideStartButton()
-    setTimerInterval()
+    startGame()
   }
 }
 
+function startGame () {
+  canvas.drawImages()
+  hideStartButton()
+  setTimerInterval()
+  state.update("imageBeingSelected")
+}
+
+function selectImage(event) {
+  clearInterval(currentTimerId)
+  state.update("imageSelected")
+
+  const rect = event.target.getBoundingClientRect()
+  const mouseCoordinateX = event.clientX - Math.floor(rect.left)
+  const mouseCoordinateY = event.clientY - Math.floor(rect.top)
+
+  if (isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
+    gameContinue()
+  } else {
+    gameOver("wrongImageClicked", mouseCoordinateX, mouseCoordinateY)
+  }
+}
+
+function gameContinue () {
+  state.update("beforeRestart")
+  canvas.drawYukipoyoSelectedMenu()
+  hazureImagesArray = generateHazureImagesArray()
+  foundYukipoyoCount++
+  setTimeout(() => {
+    getReady()
+  }, 500)
+}
+
 function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
-  isGameOver = true
   const selectedImageObject = findSelectedImage(mouseCoordinateX, mouseCoordinateY)
-  if (type === "hazureImageClicked") {
+  if (type === "wrongImageClicked") {
+    state.update("wrongImageSelected")
     canvas.drawHazureSelectedMenu(selectedImageObject)
   } else if (type === "timeOver") {
+    state.update("timeOver")
     canvas.drawTimeOverMenu()
   }
 
   canvas.drawFoundYukipoyoCountText()
   showStartButton()
   timerElement.innerText = 0
+  state.update("beforeStart")
 }
 
 function setTimerInterval () {

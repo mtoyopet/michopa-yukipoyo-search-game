@@ -74,46 +74,25 @@
     </div>
 
     <div class="start-game-wrap center">
-      <button id="start-game-button" onclick="startGame()">ゲームスタート</button>
+      <button id="start-game-button" onclick="getReady()">ゲームスタート</button>
     </div>
     <script type="text/javascript" src="./js/hazureImageObjectHandler.js"></script>
     <script type="text/javascript" src="./js/drawContextHandler.js"></script>
     <script type="text/javascript" src="./js/gameHandler.js"></script>
     <script type="text/javascript" src="./js/gameObject.js"></script>
+    <script type="text/javascript" src="./js/stateClass.js"></script>
     <script>
       const timerElement = document.getElementById("timer-text")
       const timerWrap = document.getElementById("timer-wrap")
       const startButtonElement = document.getElementById("start-game-button")
       const canvas = new canvasHandler()
-      let isImageSelected = false
+      const state = new State()
       let hazureImagesObject = {}
       let hazureImagesArray = []
       let yukipoyoDisplayImageObject
       let yukipoyoCommentImage, kurochanCommentImage, fukidashiImage
       let currentTimerId
-      let isGameOver = false
       let foundYukipoyoCount = 0
-
-      function selectImage(event) {
-        if (isImageSelected || isGameOver) { return }
-        clearInterval(currentTimerId)
-        isImageSelected = true
-
-        const rect = event.target.getBoundingClientRect()
-        const mouseCoordinateX = event.clientX - Math.floor(rect.left)
-        const mouseCoordinateY = event.clientY - Math.floor(rect.top)
-        if (isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
-          canvas.drawYukipoyoSelectedMenu()
-          hazureImagesArray = generateHazureImagesArray()
-          foundYukipoyoCount++
-          setTimeout(() => {
-            startGame()
-            isImageSelected = false
-          }, 500)
-        } else {
-          gameOver("hazureImageClicked", mouseCoordinateX, mouseCoordinateY)
-        }
-      }
 
       function startTimer () {
         let timeLeft = parseInt(timerElement.innerText)
