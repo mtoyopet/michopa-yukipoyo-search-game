@@ -1,7 +1,8 @@
 const imagesLengthObject = {
   yukipoyo: 31,
   michopa: 25,
-  anmika: 3
+  anmika: 3,
+  kurochan: 1
 }
 
 function generateHazureImageObject () {
@@ -13,7 +14,7 @@ function generateHazureImageObject () {
       let image = new Image()
       image.src = `./images/${key}/${i}.png`
       image.personName = key
-      image.titleText = key === "michopa" ? "それ、みちょぱな😭😭" : "節子、それアンミカや"
+      image.titleText = defineTitleText(key)
       hazureImagesObject[counter] = image
       counter++
     }
@@ -43,4 +44,15 @@ function calculateImagesLength () {
     length = length + imagesLengthObject[key]
   }
   return length
+}
+
+
+function defineTitleText (key) {
+  if (key === "michopa") {
+    return "それ、みちょぱな😭😭"
+  } else if (key === "anmika") {
+    return "節子、それアンミカや"
+  } else if (key === "kurochan") {
+    return "あわわわぁあ〜〜♡♡"
+  }
 }

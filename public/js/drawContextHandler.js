@@ -34,6 +34,10 @@ function drawStartMenu() {
   context.font = '30px sans-serif'
   context.fillStyle = "grey"
   context.fillText("ゆきぽよを探そう!", 60, 188)
+  context.font = '13px sans-serif'
+  context.fillStyle = "black"
+  context.fillText("9枚の写真のどれか1つだけゆきぽよが写っているよ", 38, 220)
+  context.fillText("ゆきぽよを見つけてクリックしてね！", 73, 237)
 }
 
 function drawFoundYukipoyoCountText() {
@@ -49,16 +53,16 @@ function drawHazureImageSelectedMenu (selectedImageObject) {
   context.font = '30px sans-serif'
   context.fillStyle = "yellow"
   context.fillText(selectedImageObject.titleText, 35, 188)
-  drawYukipoyoCommentText()
+  drawCommentText(selectedImageObject.personName)
 }
 
-function drawTimeOverMenu () {
+function drawTimeOverMenu (personName) {
   context.fillStyle = 'rgba(0,0,0,1)'
   context.fillRect(0, 0, 375, 375)
   context.font = '35px sans-serif'
   context.fillStyle = "yellow"
   context.fillText("タイムオーバー💀🦴", 30, 188)
-  drawYukipoyoCommentText()
+  drawCommentText(personName)
 }
 
 function drawYukipoyoFoundMenu () {
@@ -69,22 +73,34 @@ function drawYukipoyoFoundMenu () {
   context.fillText("ゆきぽよ発見🎉!!!", 25, 188)
 }
 
-function drawYukipoyoCommentText () {
-  context.drawImage(yukipoyoCommentImage, 30, 250, 125, 125)
-  context.drawImage(fukidashiImage, 120, 240, 250, 120)
-  context.font = '14px sans-serif'
-  context.fillStyle = "black"
-  comment = yukipoyoComment()
-  context.fillText(comment, 163, 305)
+function drawCommentText (personName) {
+  if (personName === "yukipoyo") {
+    context.drawImage(yukipoyoCommentImage, 30, 250, 125, 125)
+    context.drawImage(fukidashiImage, 120, 240, 250, 120)
+    context.font = '14px sans-serif'
+    context.fillStyle = "black"
+    comment = yukipoyoComment()
+    context.fillText(comment, 163, 305)
+  } else if (personName === "kurochan") {
+    context.drawImage(kurochanCommentImage, 30, 250, 125, 125)
+    context.drawImage(fukidashiImage, 120, 240, 250, 120)
+    context.font = '14px sans-serif'
+    context.fillStyle = "black"
+    context.fillText("君が大好きだしんよ♡♡♡", 163, 305)
+  }
 }
 
-function loadYukipoyoCommentImage () {
+function loadCommentImages () {
   yukipoyoCommentImage = new Image()
   yukipoyoCommentImage.src = "./images/yukipoyo-removebg.png"
+
+  kurochanCommentImage = new Image()
+  kurochanCommentImage.src = "./images/kurochan.png"
 
   fukidashiImage = new Image()
   fukidashiImage.src ="./images/fukidashi2.png"
 }
+
 
 function yukipoyoComment () {
   if (foundYukipoyoCount === 0) {

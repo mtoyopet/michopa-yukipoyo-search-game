@@ -87,7 +87,7 @@
       let hazureImagesObject = {}
       let hazureImagesArray = []
       let yukipoyoDisplayImageObject
-      let yukipoyoCommentImage, fukidashiImage
+      let yukipoyoCommentImage, kurochanCommentImage, fukidashiImage
 
       // canvas要素を取得
       const canvas = document.getElementById("canvas")
@@ -107,6 +107,7 @@
         const mouseCoordinateY = event.clientY - Math.floor(rect.top)
         if (isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
           drawYukipoyoFoundMenu()
+          hazureImagesArray = generateHazureImagesArray()
           foundYukipoyoCount++
           setTimeout(() => {
             startGame(drawImages)
@@ -148,7 +149,7 @@
       window.onload = () => {
         generateHazureImageObject()
         drawStartMenu()
-        loadYukipoyoCommentImage()
+        loadCommentImages()
       }
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
