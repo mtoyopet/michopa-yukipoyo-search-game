@@ -74,7 +74,7 @@
     </div>
 
     <div class="start-game-wrap center">
-      <button id="start-game-button" onclick="startGame(drawImages)">ゲームスタート</button>
+      <button id="start-game-button" onclick="startGame()">ゲームスタート</button>
     </div>
     <script type="text/javascript" src="./js/hazureImageObjectHandler.js"></script>
     <script type="text/javascript" src="./js/drawContextHandler.js"></script>
@@ -107,7 +107,7 @@
           hazureImagesArray = generateHazureImagesArray()
           foundYukipoyoCount++
           setTimeout(() => {
-            startGame(drawImages)
+            startGame()
             isImageSelected = false
           }, 500)
         } else {

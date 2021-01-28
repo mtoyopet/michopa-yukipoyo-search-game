@@ -4,7 +4,30 @@ class canvasHandler {
     this.gameScreenCtx = this.canvas.getContext("2d")
   }
 
-  drawStartMenu() {
+  drawImages() {
+    if (isGameOver) { return }
+    // 表示をクリア
+    this.gameScreenCtx.clearRect(0, 0, 375, 375)
+    const randomInteger = Math.floor(Math.random() * 9)
+    let counter = 0
+  
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        const coordinateX = 125 * i
+        const coordinateY = 125 * j
+        if (randomInteger === counter) {
+          // ゆきぽよの画像を表示する
+          yukipoyoDisplayImageObject.drawOnScreen(coordinateX, coordinateY)
+        } else {
+          // 外れ画像を表示する
+          hazureImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
+        }
+        counter += 1
+      }
+    }
+  }
+
+  drawStartMenu () {
     this.gameScreenCtx.fillStyle = 'pink'
     this.gameScreenCtx.fillRect(0, 0, 375, 375)
     this.gameScreenCtx.font = '30px sans-serif'
@@ -58,7 +81,7 @@ class canvasHandler {
     }
   }
 
-  drawFoundYukipoyoCountText() {
+  drawFoundYukipoyoCountText () {
     this.gameScreenCtx.font = '15px sans-serif'
     this.gameScreenCtx.fillStyle = "white"
     this.gameScreenCtx.fillText(`${foundYukipoyoCount}ゆきぽよはっけ〜ん`, 110, 220)
@@ -90,30 +113,4 @@ class canvasHandler {
       return "あなたこそ私の真のファン!"
     }
   }
-}
-
-function drawImages() {
-  if (isGameOver) { return }
-
-  // 表示をクリア
-  canvas.gameScreenCtx.clearRect(0, 0, 375, 375)
-  const randomInteger = Math.floor(Math.random() * 9)
-  let counter = 0
-
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      const coordinateX = 125 * i
-      const coordinateY = 125 * j
-      if (randomInteger === counter) {
-        // ゆきぽよの画像を表示する
-        yukipoyoDisplayImageObject.drawOnScreen(coordinateX, coordinateY)
-      } else {
-        // 外れ画像を表示する
-        hazureImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
-      }
-      counter += 1
-    }
-  }
-  hideStartButton()
-  setTimerInterval()
 }

@@ -1,4 +1,4 @@
-function startGame(callback) {
+function startGame() {
   isImageSelected = false
   isGameOver = false
 
@@ -6,14 +6,16 @@ function startGame(callback) {
   hazureImagesArray = generateHazureImagesArray()
 
   // ゆきぽよの画像を１枚選ぶ
-  selectYukipoyoImage(callback)
+  selectYukipoyoImage()
 }
 
-function selectYukipoyoImage (callback) {
+function selectYukipoyoImage () {
   const index = randomInt(imagesLengthObject.yukipoyo) + 1
   yukipoyoDisplayImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
   yukipoyoDisplayImageObject.image.onload = () => {
-    callback()
+    canvas.drawImages()
+    hideStartButton()
+    setTimerInterval()
   }
 }
 
