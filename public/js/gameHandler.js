@@ -1,7 +1,6 @@
 function startGame(callback) {
   isImageSelected = false
   isGameOver = false
-  hideStartButton()
 
   // 外れの画像の配列を作る
   hazureImagesArray = generateHazureImagesArray()

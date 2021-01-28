@@ -25,6 +25,7 @@ function drawImages() {
       counter += 1
     }
   }
+  hideStartButton()
   setTimerInterval()
 }
 
