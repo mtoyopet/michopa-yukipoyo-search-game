@@ -1,10 +1,10 @@
 class GameObject {
-  constructor(src, personName, width = 125, height = 125) {
+  constructor(src, personName) {
     this.image = new Image()
     this.image.src = src
     this.image.personName = personName
     this.image.titleText = defineTitleText(personName)
-    this.size = new Size(width, height)
+    this.size = new Size()
     this.isLoaded = false
     this.position = new Position(0, 0)
     this.image.onload = () => {
@@ -31,19 +31,5 @@ class GameObject {
   updatePosition (positionX, positionY) {
     this.position.x = positionX
     this.position.y = positionY
-  }
-}
-
-class Position {
-  constructor (positionX, positionY) {
-    this.x = positionX
-    this.y = positionY
-  }
-}
-
-class Size {
-  constructor (width, height) {
-    this.width = width
-    this.height = height
   }
 }

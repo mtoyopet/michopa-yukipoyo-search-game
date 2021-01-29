@@ -12,8 +12,8 @@ class CanvasHandler {
   
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        const coordinateX = 125 * i
-        const coordinateY = 125 * j
+        const coordinateX = size.width * i
+        const coordinateY = size.height * j
         if (randomInteger === counter) {
           // ゆきぽよの画像を表示する
           imageHandler.yukipoyoImageObject.drawOnScreen(coordinateX, coordinateY)

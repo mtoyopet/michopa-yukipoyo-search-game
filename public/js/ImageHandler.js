@@ -63,18 +63,18 @@ class ImageHandler {
   isYukipoyoSelected (mouseCoordinateX, mouseCoordinateY) {
     // ゆきぽよの画像が選ばれているか
     return (mouseCoordinateX > this.yukipoyoImageObject.position.x &&
-            mouseCoordinateX < this.yukipoyoImageObject.position.x + 125 &&
+            mouseCoordinateX < this.yukipoyoImageObject.position.x + size.width &&
             mouseCoordinateY > this.yukipoyoImageObject.position.y &&
-            mouseCoordinateY < this.yukipoyoImageObject.position.y + 125)
+            mouseCoordinateY < this.yukipoyoImageObject.position.y + size.height)
   }
 
   findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
     for (let image of this.wrongImagesArray) {
       if (
         mouseCoordinateX > image.position.x &&
-        mouseCoordinateX < image.position.x + 125 &&
+        mouseCoordinateX < image.position.x + size.width &&
         mouseCoordinateY > image.position.y &&
-        mouseCoordinateY < image.position.y + 125
+        mouseCoordinateY < image.position.y + size.height
       ) {
         return image
       }
