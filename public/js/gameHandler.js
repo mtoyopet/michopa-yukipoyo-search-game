@@ -3,15 +3,7 @@ function getReady() {
   // 外れの画像の配列を作る
   imageHandler.generateWrongImagesArray()
   // ゆきぽよの画像を１枚選ぶ
-  selectYukipoyoImage()
-}
-
-function selectYukipoyoImage () {
-  const index = randomInt(imageHandler.imagesLengthObject.yukipoyo) + 1
-  yukipoyoDisplayImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
-  yukipoyoDisplayImageObject.image.onload = () => {
-    startGame()
-  }
+  imageHandler.selectYukipoyoImage(startGame)
 }
 
 function startGame () {

@@ -47,6 +47,14 @@ class ImageHandler {
     }
     return length
   }
+
+  selectYukipoyoImage (callback) {
+    const index = randomInt(this.imagesLengthObject.yukipoyo) + 1
+    this.yukipoyoImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
+    this.yukipoyoImageObject.image.onload = () => {
+      callback()
+    }
+  }
 }
 
 
