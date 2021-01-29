@@ -58,9 +58,3 @@ function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
 function randomInt(max) {
   return Math.floor(Math.random() * Math.floor(max))
 }
-
-function loadGameOverMenuImages () {
-  yukipoyoCommentImage = new GameObject("./images/yukipoyo-removebg.png", "yukipoyo")
-  kurochanCommentImage = new GameObject("./images/kurochan.png", "kurochan")
-  fukidashiImage = new GameObject("./images/fukidashi2.png", "fukidashi")
-}

@@ -9,6 +9,9 @@ class ImageHandler {
     this.wrongImagesObject = {}
     this.wrongImagesArray = []
     this.yukipoyoImageObject = {}
+    this.yukipoyoCommentImage = {}
+    this.kurochanCommentImage = {}
+    this.fukidashiImage = {}
   }
 
   loadWrongImagesObject () {
@@ -76,6 +79,12 @@ class ImageHandler {
         return image
       }
     }
+  }
+
+  loadGameOverMenuImages () {
+    this.yukipoyoCommentImage = new GameObject("./images/yukipoyo-removebg.png", "yukipoyo")
+    this.kurochanCommentImage = new GameObject("./images/kurochan.png", "kurochan")
+    this.fukidashiImage = new GameObject("./images/fukidashi2.png", "fukidashi")
   }
 }
 

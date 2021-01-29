@@ -66,14 +66,14 @@ class canvasHandler {
 
   drawCommentText (personName) {
     if (personName === "kurochan") {
-      this.gameScreenCtx.drawImage(kurochanCommentImage.image, 30, 250, 125, 125)
-      this.gameScreenCtx.drawImage(fukidashiImage.image, 120, 240, 250, 120)
+      this.gameScreenCtx.drawImage(imageHandler.kurochanCommentImage.image, 30, 250, 125, 125)
+      this.gameScreenCtx.drawImage(imageHandler.fukidashiImage.image, 120, 240, 250, 120)
       this.gameScreenCtx.font = '14px sans-serif'
       this.gameScreenCtx.fillStyle = "black"
       this.gameScreenCtx.fillText("君が大好きだしんよ♡♡♡", 163, 305)
     } else {
-      this.gameScreenCtx.drawImage(yukipoyoCommentImage.image, 30, 250, 125, 125)
-      this.gameScreenCtx.drawImage(fukidashiImage.image, 120, 240, 250, 120)
+      this.gameScreenCtx.drawImage(imageHandler.yukipoyoCommentImage.image, 30, 250, 125, 125)
+      this.gameScreenCtx.drawImage(imageHandler.fukidashiImage.image, 120, 240, 250, 120)
       this.gameScreenCtx.font = '14px sans-serif'
       this.gameScreenCtx.fillStyle = "black"
       this.gameScreenCtx.fillText(this.yukipoyoComment(), 163, 305)    
