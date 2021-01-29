@@ -30,15 +30,15 @@
       <button id="start-game-button" onclick="getReady()">ゲームスタート</button>
     </div>
     <script type="text/javascript" src="./js/ImageHandler.js"></script>
-    <script type="text/javascript" src="./js/drawContextHandler.js"></script>
+    <script type="text/javascript" src="./js/CanvasHandler.js"></script>
     <script type="text/javascript" src="./js/gameHandler.js"></script>
-    <script type="text/javascript" src="./js/gameObject.js"></script>
-    <script type="text/javascript" src="./js/stateClass.js"></script>
-    <script type="text/javascript" src="./js/timeHandler.js"></script>
+    <script type="text/javascript" src="./js/GameObject.js"></script>
+    <script type="text/javascript" src="./js/State.js"></script>
+    <script type="text/javascript" src="./js/TimeHandler.js"></script>
     <script type="text/javascript" src="./js/DomHandler.js"></script>
     <script type="text/javascript" src="./js/PointHandler.js"></script>
     <script>
-      const canvas = new canvasHandler()
+      const canvas = new CanvasHandler()
       const state = new State()
       const timer = new TimeHandler()
       const dom = new DomHandler()

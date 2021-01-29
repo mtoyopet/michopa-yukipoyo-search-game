@@ -1,4 +1,4 @@
-class canvasHandler {
+class CanvasHandler {
   constructor () {
     this.canvas = document.getElementById("canvas") // canvas要素を取得
     this.gameScreenCtx = this.canvas.getContext("2d")
