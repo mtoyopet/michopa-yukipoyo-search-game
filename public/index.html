@@ -36,14 +36,14 @@
     <script type="text/javascript" src="./js/stateClass.js"></script>
     <script type="text/javascript" src="./js/timeHandler.js"></script>
     <script type="text/javascript" src="./js/DomHandler.js"></script>
+    <script type="text/javascript" src="./js/PointHandler.js"></script>
     <script>
       const canvas = new canvasHandler()
       const state = new State()
       const timer = new TimeHandler()
       const dom = new DomHandler()
       const imageHandler = new ImageHandler()
-      let yukipoyoCommentImage, kurochanCommentImage, fukidashiImage
-      let foundYukipoyoCount = 0
+      const pointHandler = new PointHandler()
 
       window.onload = () => {
         imageHandler.loadWrongImagesObject()

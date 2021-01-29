@@ -80,33 +80,33 @@ class canvasHandler {
     }
   }
 
-  drawFoundYukipoyoCountText () {
+  drawPoint () {
     this.gameScreenCtx.font = '15px sans-serif'
     this.gameScreenCtx.fillStyle = "white"
-    this.gameScreenCtx.fillText(`${foundYukipoyoCount}ゆきぽよはっけ〜ん`, 110, 220)
-    foundYukipoyoCount = 0
+    this.gameScreenCtx.fillText(`${pointHandler.point}ゆきぽよはっけ〜ん`, 110, 220)
+    pointHandler.reset()
   }
 
   yukipoyoComment () {
-    if (foundYukipoyoCount === 0) {
+    if (pointHandler.point === 0) {
       return "・・・・・やる気あるの？"
-    } else if (foundYukipoyoCount >= 1 && foundYukipoyoCount < 5) {
+    } else if (pointHandler.point >= 1 && pointHandler.point < 5) {
       return "もっと真剣に探しなさい!!" 
-    } else if (foundYukipoyoCount >= 5 && foundYukipoyoCount < 10) {
+    } else if (pointHandler.point >= 5 && pointHandler.point < 10) {
       return "・・ちゃんと集中してた？"
-    } else if (foundYukipoyoCount >= 10 && foundYukipoyoCount < 15) {
+    } else if (pointHandler.point >= 10 && pointHandler.point < 15) {
       return "やっとスタートラインね!!"
-    } else if (foundYukipoyoCount >= 15 && foundYukipoyoCount < 20) {
+    } else if (pointHandler.point >= 15 && pointHandler.point < 20) {
       return "やっと慣れてきた感じね？"
-    } else if (foundYukipoyoCount >= 20 && foundYukipoyoCount < 25) {
+    } else if (pointHandler.point >= 20 && pointHandler.point < 25) {
       return "もしかして私のファン？？"
-    } else if (foundYukipoyoCount >= 25 && foundYukipoyoCount < 30) {
+    } else if (pointHandler.point >= 25 && pointHandler.point < 30) {
       return "いいわね、その調子よ!!"
-    } else if (foundYukipoyoCount >= 30 && foundYukipoyoCount < 35) {
+    } else if (pointHandler.point >= 30 && pointHandler.point < 35) {
       return "まだまだいけるんじゃない?"
-    } else if (foundYukipoyoCount >= 35 && foundYukipoyoCount < 40) {
+    } else if (pointHandler.point >= 35 && pointHandler.point < 40) {
       return "あともう少し頑張れるわよ!"
-    } else if (foundYukipoyoCount >= 40 && foundYukipoyoCount < 45) {
+    } else if (pointHandler.point >= 40 && pointHandler.point < 45) {
       return "最高ね・・褒めてあげるわ"
     } else {
       return "あなたこそ私の真のファン!"

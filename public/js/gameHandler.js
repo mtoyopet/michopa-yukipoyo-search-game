@@ -34,7 +34,7 @@ function gameContinue () {
   state.update("beforeRestart")
   canvas.drawYukipoyoSelectedMenu()
   imageHandler.generateWrongImagesArray()
-  foundYukipoyoCount++
+  pointHandler.increment()
   setTimeout(() => {
     getReady()
   }, 500)
@@ -50,7 +50,7 @@ function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
     canvas.drawTimeOverMenu()
   }
 
-  canvas.drawFoundYukipoyoCountText()
+  canvas.drawPoint()
   dom.showStartButton()
   state.update("beforeStart")
 }
