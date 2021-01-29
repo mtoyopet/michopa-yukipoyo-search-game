@@ -35,12 +35,12 @@
     <script type="text/javascript" src="./js/gameObject.js"></script>
     <script type="text/javascript" src="./js/stateClass.js"></script>
     <script type="text/javascript" src="./js/timeHandler.js"></script>
+    <script type="text/javascript" src="./js/DomHandler.js"></script>
     <script>
-      const timerWrap = document.getElementById("timer-wrap")
-      const startButtonElement = document.getElementById("start-game-button")
       const canvas = new canvasHandler()
       const state = new State()
-      const timer = new timeHandler()
+      const timer = new TimeHandler()
+      const dom = new DomHandler()
       let hazureImagesObject = {}
       let hazureImagesArray = []
       let yukipoyoDisplayImageObject
@@ -53,16 +53,6 @@
                 mouseCoordinateX < yukipoyoDisplayImageObject.position.x + 125 &&
                 mouseCoordinateY > yukipoyoDisplayImageObject.position.y &&
                 mouseCoordinateY < yukipoyoDisplayImageObject.position.y + 125)
-      }
-
-      function hideStartButton () {
-        startButtonElement.style.display = "none"
-        timerWrap.style.display = "block"
-      }
-
-      function showStartButton () {
-        startButtonElement.style.display = "inline"
-        timerWrap.style.display ="none"
       }
 
       window.onload = () => {

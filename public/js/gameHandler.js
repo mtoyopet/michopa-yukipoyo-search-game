@@ -16,8 +16,8 @@ function selectYukipoyoImage () {
 
 function startGame () {
   canvas.drawImages()
-  hideStartButton()
-  timer.setTimerInterval()
+  dom.hideStartButton()
+  timer.startInterval()
   state.update("imageBeingSelected")
 }
 
@@ -59,7 +59,7 @@ function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
   }
 
   canvas.drawFoundYukipoyoCountText()
-  showStartButton()
+  dom.showStartButton()
   state.update("beforeStart")
 }
 
