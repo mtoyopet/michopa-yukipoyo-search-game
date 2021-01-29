@@ -19,7 +19,7 @@ class canvasHandler {
           yukipoyoDisplayImageObject.drawOnScreen(coordinateX, coordinateY)
         } else {
           // 外れ画像を表示する
-          hazureImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
+          imageHandler.wrongImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
         }
         counter += 1
       }

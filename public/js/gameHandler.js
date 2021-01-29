@@ -1,13 +1,13 @@
 function getReady() {
   if (![1, 2].includes(state.currentNumber)) { return }
   // 外れの画像の配列を作る
-  hazureImagesArray = generateHazureImagesArray()
+  imageHandler.generateWrongImagesArray()
   // ゆきぽよの画像を１枚選ぶ
   selectYukipoyoImage()
 }
 
 function selectYukipoyoImage () {
-  const index = randomInt(imagesLengthObject.yukipoyo) + 1
+  const index = randomInt(imageHandler.imagesLengthObject.yukipoyo) + 1
   yukipoyoDisplayImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
   yukipoyoDisplayImageObject.image.onload = () => {
     startGame()
@@ -41,7 +41,7 @@ function selectImage(event) {
 function gameContinue () {
   state.update("beforeRestart")
   canvas.drawYukipoyoSelectedMenu()
-  hazureImagesArray = generateHazureImagesArray()
+  imageHandler.generateWrongImagesArray()
   foundYukipoyoCount++
   setTimeout(() => {
     getReady()
@@ -68,7 +68,7 @@ function randomInt(max) {
 }
 
 function findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
-  for (let image of hazureImagesArray) {
+  for (let image of imageHandler.wrongImagesArray) {
     if (
       mouseCoordinateX > image.position.x &&
       mouseCoordinateX < image.position.x + 125 &&
