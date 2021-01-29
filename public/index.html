@@ -45,14 +45,6 @@
       let yukipoyoCommentImage, kurochanCommentImage, fukidashiImage
       let foundYukipoyoCount = 0
 
-      function isYukipoyoSelected (mouseCoordinateX, mouseCoordinateY) {
-        // ゆきぽよの画像が選ばれているか
-        return (mouseCoordinateX > imageHandler.yukipoyoImageObject.position.x &&
-                mouseCoordinateX < imageHandler.yukipoyoImageObject.position.x + 125 &&
-                mouseCoordinateY > imageHandler.yukipoyoImageObject.position.y &&
-                mouseCoordinateY < imageHandler.yukipoyoImageObject.position.y + 125)
-      }
-
       window.onload = () => {
         imageHandler.loadWrongImagesObject()
         canvas.drawStartMenu()

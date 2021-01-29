@@ -23,7 +23,7 @@ function selectImage(event) {
   const mouseCoordinateX = event.clientX - Math.floor(rect.left)
   const mouseCoordinateY = event.clientY - Math.floor(rect.top)
 
-  if (isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
+  if (imageHandler.isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
     gameContinue()
   } else {
     gameOver("wrongImageClicked", mouseCoordinateX, mouseCoordinateY)
