@@ -4,7 +4,7 @@ class canvasHandler {
     this.gameScreenCtx = this.canvas.getContext("2d")
   }
 
-  drawImages() {
+  drawImages () {
     // 表示をクリア
     this.gameScreenCtx.clearRect(0, 0, 375, 375)
     const randomInteger = Math.floor(Math.random() * 9)

@@ -17,15 +17,15 @@ function selectYukipoyoImage () {
 function startGame () {
   canvas.drawImages()
   hideStartButton()
-  setTimerInterval()
+  timer.setTimerInterval()
   state.update("imageBeingSelected")
 }
 
 function selectImage(event) {
   if (state.currentNumber !== state.stageNumbers.imageBeingSelected) { return }
 
-  clearInterval(currentTimerId)
   state.update("imageSelected")
+  timer.stopInterval()
 
   const rect = event.target.getBoundingClientRect()
   const mouseCoordinateX = event.clientX - Math.floor(rect.left)
@@ -60,13 +60,7 @@ function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
 
   canvas.drawFoundYukipoyoCountText()
   showStartButton()
-  timerElement.innerText = 0
   state.update("beforeStart")
-}
-
-function setTimerInterval () {
-  timerElement.innerText = 4
-  currentTimerId = setInterval(() => { startTimer() }, 1000)
 }
 
 function randomInt(max) {

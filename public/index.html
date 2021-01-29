@@ -11,58 +11,11 @@
     />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      body {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 500px;
-        font-family: 'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,sans-serif;
-      }
-      .content {
-        width: 100%;
-      }
-      .center {
-        text-align: center;
-      }
-      .canvas-wrap {
-        width: 375px;
-        margin: 0 auto;
-      }
-      .input-data {
-        text-align: right;
-      }
-      .mt5 {
-        max-width: 100%;
-        margin: 5px 10px;
-      }
-
-      #timer-text {
-        font-size: 30px;
-        color: #EE4056;
-        font-weight: bold;
-      }
-
-      #start-game-button {
-        background-color: #EE4056;
-        color: white;
-        font-size: 16px;
-        border-style: none;
-        padding: 10px;
-        text-align: center;        
-      }
-
-      #timer-wrap {
-        font-size: 16px;
-        font-weight: bold;
-        letter-spacing: 1px;
-      }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
   </head>
   <body>
     <div class="center">
       <h2 class="center">ゆきぽよを探せゲーム</h2>
-      <!-- <p class="center">30秒間でできるだけたくさんのゆきぽよを探せ！</p> -->
     </div>
 
     <div class="canvas-wrap">
@@ -81,28 +34,18 @@
     <script type="text/javascript" src="./js/gameHandler.js"></script>
     <script type="text/javascript" src="./js/gameObject.js"></script>
     <script type="text/javascript" src="./js/stateClass.js"></script>
+    <script type="text/javascript" src="./js/timeHandler.js"></script>
     <script>
-      const timerElement = document.getElementById("timer-text")
       const timerWrap = document.getElementById("timer-wrap")
       const startButtonElement = document.getElementById("start-game-button")
       const canvas = new canvasHandler()
       const state = new State()
+      const timer = new timeHandler()
       let hazureImagesObject = {}
       let hazureImagesArray = []
       let yukipoyoDisplayImageObject
       let yukipoyoCommentImage, kurochanCommentImage, fukidashiImage
-      let currentTimerId
       let foundYukipoyoCount = 0
-
-      function startTimer () {
-        let timeLeft = parseInt(timerElement.innerText)
-        if (timeLeft <= 1) {
-          gameOver("timeOver")
-          clearInterval(currentTimerId)
-        } else {
-          timerElement.innerText = (timeLeft - 1).toString()
-        }
-      }
 
       function isYukipoyoSelected (mouseCoordinateX, mouseCoordinateY) {
         // ゆきぽよの画像が選ばれているか
