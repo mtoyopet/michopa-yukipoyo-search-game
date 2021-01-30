@@ -1,4 +1,4 @@
-class PointHandler {
+class Point {
   constructor () {
     this.point = 0
   }

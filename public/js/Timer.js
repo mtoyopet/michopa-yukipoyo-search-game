@@ -1,4 +1,4 @@
-class TimeHandler {
+class Timer {
   constructor () {
     this.leftTime = 4
     this.timerElement = document.getElementById("timer-text")

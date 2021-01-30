@@ -34,19 +34,19 @@
     <script type="text/javascript" src="./js/gameHandler.js"></script>
     <script type="text/javascript" src="./js/GameObject.js"></script>
     <script type="text/javascript" src="./js/State.js"></script>
-    <script type="text/javascript" src="./js/TimeHandler.js"></script>
+    <script type="text/javascript" src="./js/Timer.js"></script>
     <script type="text/javascript" src="./js/DomHandler.js"></script>
-    <script type="text/javascript" src="./js/PointHandler.js"></script>
+    <script type="text/javascript" src="./js/Point.js"></script>
     <script type="text/javascript" src="./js/Size.js"></script>
     <script type="text/javascript" src="./js/Position.js"></script>
     <script>
       const game = new GameHandler()
       const canvas = new CanvasHandler()
-      const state = new State()
-      const timer = new TimeHandler()
-      const dom = new DomHandler()
       const imageHandler = new ImageHandler()
-      const pointHandler = new PointHandler()
+      const dom = new DomHandler()
+      const state = new State()
+      const timer = new Timer()
+      const pointHandler = new Point()
       const size = new Size()
 
       window.onload = () => {
