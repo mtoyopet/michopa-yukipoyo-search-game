@@ -1,58 +1,44 @@
-function getReady() {
-  if (![1, 2].includes(state.currentNumber)) { return }
-  // 外れの画像の配列を作る
-  imageHandler.generateWrongImagesArray()
-  // ゆきぽよの画像を１枚選ぶ
-  imageHandler.selectYukipoyoImage(startGame)
-}
-
-function startGame () {
-  canvas.drawImages()
-  dom.hideStartButton()
-  timer.startInterval()
-  state.update("imageBeingSelected")
-}
-
-function selectImage(event) {
-  if (state.currentNumber !== state.stageNumbers.imageBeingSelected) { return }
-
-  state.update("imageSelected")
-  timer.stopInterval()
-
-  const rect = event.target.getBoundingClientRect()
-  const mouseCoordinateX = event.clientX - Math.floor(rect.left)
-  const mouseCoordinateY = event.clientY - Math.floor(rect.top)
-
-  if (imageHandler.isYukipoyoSelected(mouseCoordinateX, mouseCoordinateY)) {
-    gameContinue()
-  } else {
-    gameOver("wrongImageClicked", mouseCoordinateX, mouseCoordinateY)
-  }
-}
-
-function gameContinue () {
-  state.update("beforeRestart")
-  canvas.drawYukipoyoSelectedMenu()
-  imageHandler.generateWrongImagesArray()
-  pointHandler.increment()
-  setTimeout(() => {
-    getReady()
-  }, 500)
-}
-
-function gameOver (type, mouseCoordinateX, mouseCoordinateY) {
-  const selectedImageObject = imageHandler.findSelectedImage(mouseCoordinateX, mouseCoordinateY)
-  if (type === "wrongImageClicked") {
-    state.update("wrongImageSelected")
-    canvas.drawHazureSelectedMenu(selectedImageObject)
-  } else if (type === "timeOver") {
-    state.update("timeOver")
-    canvas.drawTimeOverMenu()
+class GameHandler {
+  getReady() {
+    let stageNumbers = state.stageNumbers
+    if (![stageNumbers.beforeStart, stageNumbers.beforeRestart].includes(state.currentNumber)) { return }
+    // 外れの画像の配列を作る
+    imageHandler.generateWrongImagesArray()
+    // ゆきぽよの画像を１枚選ぶ
+    imageHandler.selectYukipoyoImage(this.startGame)
   }
 
-  canvas.drawPoint()
-  dom.showStartButton()
-  state.update("beforeStart")
+  startGame () {
+    canvas.drawImages()
+    dom.hideStartButton()
+    timer.startInterval()
+    state.update("imageBeingSelected")
+  }
+
+  continue () {
+    state.update("beforeRestart")
+    canvas.drawYukipoyoSelectedMenu()
+    imageHandler.generateWrongImagesArray()
+    pointHandler.increment()
+    setTimeout(() => {
+      this.getReady()
+    }, 500)
+  }
+
+  gameOver (type, mouseCoordinateX, mouseCoordinateY) {
+    const selectedImageObject = imageHandler.findSelectedImage(mouseCoordinateX, mouseCoordinateY)
+    if (type === "wrongImageClicked") {
+      state.update("wrongImageSelected")
+      canvas.drawHazureSelectedMenu(selectedImageObject)
+    } else if (type === "timeOver") {
+      state.update("timeOver")
+      canvas.drawTimeOverMenu()
+    }
+  
+    canvas.drawPoint()
+    dom.showStartButton()
+    state.update("beforeStart")
+  }
 }
 
 function randomInt(max) {

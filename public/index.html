@@ -19,7 +19,7 @@
     </div>
 
     <div class="canvas-wrap">
-      <canvas id="canvas" class="center" width="375" height="375" onclick="selectImage(event)"></canvas>
+      <canvas id="canvas" class="center" width="375" height="375" onclick="imageHandler.select(event)"></canvas>
     </div>
 
     <div id="timer-wrap" class="center" style="display: none;">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="start-game-wrap center">
-      <button id="start-game-button" onclick="getReady()">ゲームスタート</button>
+      <button id="start-game-button" onclick="game.getReady()">ゲームスタート</button>
     </div>
     <script type="text/javascript" src="./js/ImageHandler.js"></script>
     <script type="text/javascript" src="./js/CanvasHandler.js"></script>
@@ -40,6 +40,7 @@
     <script type="text/javascript" src="./js/Size.js"></script>
     <script type="text/javascript" src="./js/Position.js"></script>
     <script>
+      const game = new GameHandler()
       const canvas = new CanvasHandler()
       const state = new State()
       const timer = new TimeHandler()

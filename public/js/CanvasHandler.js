@@ -16,7 +16,7 @@ class CanvasHandler {
         const coordinateY = size.height * j
         if (randomInteger === counter) {
           // ゆきぽよの画像を表示する
-          imageHandler.yukipoyoImageObject.drawOnScreen(coordinateX, coordinateY)
+          imageHandler.correctImageObject.drawOnScreen(coordinateX, coordinateY)
         } else {
           // 外れ画像を表示する
           imageHandler.wrongImagesArray[counter].drawOnScreen(coordinateX, coordinateY)

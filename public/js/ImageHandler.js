@@ -1,14 +1,14 @@
 class ImageHandler {
   constructor () {
     this.imagesLengthObject = {
-      yukipoyo: 31,
+      yukipoyo: 37,
       michopa: 25,
       anmika: 3,
       kurochan: 1
     }    
     this.wrongImagesObject = {}
     this.wrongImagesArray = []
-    this.yukipoyoImageObject = {}
+    this.correctImageObject = {}
     this.yukipoyoCommentImage = {}
     this.kurochanCommentImage = {}
     this.fukidashiImage = {}
@@ -52,20 +52,37 @@ class ImageHandler {
     return length
   }
 
+  select (event) {
+    if (state.currentNumber !== state.stageNumbers.imageBeingSelected) { return }
+
+    state.update("imageSelected")
+    timer.stopInterval()
+
+    const rect = event.target.getBoundingClientRect()
+    const mouseCoordinateX = event.clientX - Math.floor(rect.left)
+    const mouseCoordinateY = event.clientY - Math.floor(rect.top)
+
+    if (imageHandler.isCorrectImageSelected(mouseCoordinateX, mouseCoordinateY)) {
+      game.continue()
+    } else {
+      game.gameOver("wrongImageClicked", mouseCoordinateX, mouseCoordinateY)
+    }
+  }
+
   selectYukipoyoImage (callback) {
     const index = randomInt(this.imagesLengthObject.yukipoyo) + 1
-    this.yukipoyoImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
-    this.yukipoyoImageObject.image.onload = () => {
+    this.correctImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
+    this.correctImageObject.image.onload = () => {
       callback()
     }
   }
 
-  isYukipoyoSelected (mouseCoordinateX, mouseCoordinateY) {
+  isCorrectImageSelected (mouseCoordinateX, mouseCoordinateY) {
     // ゆきぽよの画像が選ばれているか
-    return (mouseCoordinateX > this.yukipoyoImageObject.position.x &&
-            mouseCoordinateX < this.yukipoyoImageObject.position.x + size.width &&
-            mouseCoordinateY > this.yukipoyoImageObject.position.y &&
-            mouseCoordinateY < this.yukipoyoImageObject.position.y + size.height)
+    return (mouseCoordinateX > this.correctImageObject.position.x &&
+            mouseCoordinateX < this.correctImageObject.position.x + size.width &&
+            mouseCoordinateY > this.correctImageObject.position.y &&
+            mouseCoordinateY < this.correctImageObject.position.y + size.height)
   }
 
   findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
