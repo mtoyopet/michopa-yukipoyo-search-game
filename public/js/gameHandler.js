@@ -1,16 +1,23 @@
 class GameHandler {
-  getReady(difficultyLevel) {
+  prepare(difficultyLevel) {
     let stageNumbers = state.stageNumbers
     if (![stageNumbers.beforeStart, stageNumbers.beforeRestart].includes(state.currentNumber)) { return }
     size.update()
     canvas.updateRowColumns()
-    dom.hideStartButton()
     // 外れの画像の配列を作る
     imageHandler.generateWrongImagesArray()
     // ゆきぽよの画像を１枚選ぶ
     imageHandler.selectCorrectImage()
     // モードによって何度を調整する
     timer.updateOriginalTime(difficultyLevel)
+  }
+
+  getReady () {
+    dom.hideStartButton()
+    dom.hideTimer()
+
+    if (!point.isMidpoint()) { this.start(); return }
+    canvas.drawMidpointMenu()
   }
 
   start () {
@@ -26,7 +33,7 @@ class GameHandler {
     imageHandler.generateWrongImagesArray()
     point.increment()
     setTimeout(() => {
-      this.getReady()
+      this.prepare()
     }, 500)
   }
 

@@ -62,8 +62,6 @@ class CanvasHandler {
   }
 
   drawMidpointMenu () {
-    if (!point.isMidpoint()) { game.start(); return }
-
     this.gameScreenCtx.clearRect(0, 0, 375, 375)
     this.gameScreenCtx.fillStyle = 'rgba(255,255,255,0.8)'
     this.gameScreenCtx.fillRect(0, 0, 375, 375)

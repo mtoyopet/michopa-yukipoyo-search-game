@@ -76,8 +76,7 @@ class ImageHandler {
     this.correctImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
     this.correctImageObject.updateSize()
     this.correctImageObject.image.onload = () => {
-      dom.hideTimer()
-      canvas.drawMidpointMenu()
+      game.getReady()
     }
   }
 
