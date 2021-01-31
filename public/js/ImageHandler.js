@@ -12,6 +12,7 @@ class ImageHandler {
     this.yukipoyoCommentImage = {}
     this.kurochanCommentImage = {}
     this.fukidashiImage = {}
+    this.imagesLength = 4
   }
 
   loadWrongImagesObject () {
@@ -33,10 +34,11 @@ class ImageHandler {
     let images = []
     let length = this.calculateImagesLength()
   
-    while (indexes.length < 9) {
+    while (indexes.length < 25) {
       const index = randomInt(length)
       if (!indexes.includes(index)) {
         if (!this.wrongImagesObject[index]) { continue }
+        this.wrongImagesObject[index].updateSize()
         images.push(this.wrongImagesObject[index])
         indexes.push(index)  
       }
@@ -69,11 +71,12 @@ class ImageHandler {
     }
   }
 
-  selectYukipoyoImage (callback) {
+  selectCorrectImage () {
     const index = randomInt(this.imagesLengthObject.yukipoyo) + 1
     this.correctImageObject = new GameObject(`./images/yukipoyo/${index}.png`, "yukipoyo")
+    this.correctImageObject.updateSize()
     this.correctImageObject.image.onload = () => {
-      callback()
+      canvas.drawMidpointMenu()
     }
   }
 
@@ -105,5 +108,7 @@ class ImageHandler {
   }
 }
 
-
+function randomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max))
+}
 

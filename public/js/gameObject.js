@@ -5,11 +5,7 @@ class GameObject {
     this.image.personName = personName
     this.image.titleText = defineTitleText(personName)
     this.size = new Size()
-    this.isLoaded = false
     this.position = new Position(0, 0)
-    this.image.onload = () => {
-      this.image.isLoaded = true
-    }
 
     function defineTitleText (personName) {
       if (personName === "michopa") {
@@ -31,5 +27,9 @@ class GameObject {
   updatePosition (positionX, positionY) {
     this.position.x = positionX
     this.position.y = positionY
+  }
+
+  updateSize () {
+    this.size.update()
   }
 }

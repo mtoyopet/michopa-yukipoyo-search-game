@@ -7,7 +7,7 @@ class Timer {
 
   update () {
     if (this.leftTime <= 1) {
-      gameHandler.gameOver("timeOver")
+      game.gameOver("timeOver")
       this.stopInterval()
     } else {
       this.set(this.leftTime - 1)

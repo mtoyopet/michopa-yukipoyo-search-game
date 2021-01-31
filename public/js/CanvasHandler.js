@@ -2,16 +2,17 @@ class CanvasHandler {
   constructor () {
     this.canvas = document.getElementById("canvas") // canvas要素を取得
     this.gameScreenCtx = this.canvas.getContext("2d")
+    this.row = 1
+    this.column = 2
   }
 
   drawImages () {
     // 表示をクリア
     this.gameScreenCtx.clearRect(0, 0, 375, 375)
-    const randomInteger = Math.floor(Math.random() * 9)
+    const randomInteger = Math.floor(Math.random() * (this.row * this.column))
     let counter = 0
-  
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < this.column; i++) {
+      for (let j = 0; j < this.row; j++) {
         const coordinateX = size.width * i
         const coordinateY = size.height * j
         if (randomInteger === counter) {
@@ -26,6 +27,28 @@ class CanvasHandler {
     }
   }
 
+  updateRowColumns () {
+    if (point.counter < point.numbers.five) {
+      this.row = 1
+      this.column = 2
+    } else if (point.counter < point.numbers.ten) {
+      this.row = 2
+      this.column = 2
+    } else if (point.counter >= point.numbers.ten && point.counter < point.numbers.fifteen) {
+      this.row = 3
+      this.column = 3
+    } else if (point.counter >= point.numbers.fifteen && point.counter < point.numbers.twenty) {
+      this.row = 4
+      this.column = 4
+    } else if (point.counter >= point.numbers.twenty && point.counter < point.numbers.twentyfive) {
+      this.row = 5
+      this.column = 5
+    } else {
+      this.row = 6
+      this.column = 6
+    }
+  }
+
   drawStartMenu () {
     this.gameScreenCtx.fillStyle = 'pink'
     this.gameScreenCtx.fillRect(0, 0, 375, 375)
@@ -36,6 +59,22 @@ class CanvasHandler {
     this.gameScreenCtx.fillStyle = "black"
     this.gameScreenCtx.fillText("9枚の写真のどれか1つだけゆきぽよが写っているよ", 38, 220)
     this.gameScreenCtx.fillText("ゆきぽよを見つけてクリックしてね！", 73, 237)
+  }
+
+  drawMidpointMenu () {
+    if (!point.isMidpoint()) { game.start(); return }
+
+    this.gameScreenCtx.clearRect(0, 0, 375, 375)
+    this.gameScreenCtx.fillStyle = 'rgba(255,255,255,0.8)'
+    this.gameScreenCtx.fillRect(0, 0, 375, 375)
+    this.gameScreenCtx.font = '30px sans-serif'
+    this.gameScreenCtx.fillStyle = "#EE4056"
+    this.gameScreenCtx.fillText(`${this.row * this.column}枚の写真から`, 85, 188)    
+    this.gameScreenCtx.fillText("ゆきぽよを探せ！", 85, 220)
+    
+    setTimeout(() => {
+      game.start()
+    }, 1000)
   }
 
   drawTimeOverMenu (personName) {
@@ -83,30 +122,30 @@ class CanvasHandler {
   drawPoint () {
     this.gameScreenCtx.font = '15px sans-serif'
     this.gameScreenCtx.fillStyle = "white"
-    this.gameScreenCtx.fillText(`${pointHandler.point}ゆきぽよはっけ〜ん`, 110, 220)
-    pointHandler.reset()
+    this.gameScreenCtx.fillText(`${point.counter}ゆきぽよはっけ〜ん`, 110, 220)
+    point.reset()
   }
 
   yukipoyoComment () {
-    if (pointHandler.point === 0) {
+    if (point.counter === 0) {
       return "・・・・・やる気あるの？"
-    } else if (pointHandler.point >= 1 && pointHandler.point < 5) {
+    } else if (point.counter >= 1 && point.counter < 5) {
       return "もっと真剣に探しなさい!!" 
-    } else if (pointHandler.point >= 5 && pointHandler.point < 10) {
+    } else if (point.counter >= 5 && point.counter < 10) {
       return "・・ちゃんと集中してた？"
-    } else if (pointHandler.point >= 10 && pointHandler.point < 15) {
+    } else if (point.counter >= 10 && point.counter < 15) {
       return "やっとスタートラインね!!"
-    } else if (pointHandler.point >= 15 && pointHandler.point < 20) {
+    } else if (point.counter >= 15 && point.counter < 20) {
       return "やっと慣れてきた感じね？"
-    } else if (pointHandler.point >= 20 && pointHandler.point < 25) {
+    } else if (point.counter >= 20 && point.counter < 25) {
       return "もしかして私のファン？？"
-    } else if (pointHandler.point >= 25 && pointHandler.point < 30) {
+    } else if (point.counter >= 25 && point.counter < 30) {
       return "いいわね、その調子よ!!"
-    } else if (pointHandler.point >= 30 && pointHandler.point < 35) {
+    } else if (point.counter >= 30 && point.counter < 35) {
       return "まだまだいけるんじゃない?"
-    } else if (pointHandler.point >= 35 && pointHandler.point < 40) {
+    } else if (point.counter >= 35 && point.counter < 40) {
       return "あともう少し頑張れるわよ!"
-    } else if (pointHandler.point >= 40 && pointHandler.point < 45) {
+    } else if (point.counter >= 40 && point.counter < 45) {
       return "最高ね・・褒めてあげるわ"
     } else {
       return "あなたこそ私の真のファン!"

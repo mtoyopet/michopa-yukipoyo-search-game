@@ -2,13 +2,15 @@ class GameHandler {
   getReady() {
     let stageNumbers = state.stageNumbers
     if (![stageNumbers.beforeStart, stageNumbers.beforeRestart].includes(state.currentNumber)) { return }
+    size.update()
+    canvas.updateRowColumns()
     // 外れの画像の配列を作る
     imageHandler.generateWrongImagesArray()
     // ゆきぽよの画像を１枚選ぶ
-    imageHandler.selectYukipoyoImage(this.startGame)
+    imageHandler.selectCorrectImage()
   }
 
-  startGame () {
+  start () {
     canvas.drawImages()
     dom.hideStartButton()
     timer.startInterval()
@@ -19,7 +21,7 @@ class GameHandler {
     state.update("beforeRestart")
     canvas.drawYukipoyoSelectedMenu()
     imageHandler.generateWrongImagesArray()
-    pointHandler.increment()
+    point.increment()
     setTimeout(() => {
       this.getReady()
     }, 500)
@@ -39,8 +41,4 @@ class GameHandler {
     dom.showStartButton()
     state.update("beforeStart")
   }
-}
-
-function randomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max))
 }
