@@ -23,11 +23,15 @@
     </div>
 
     <div id="timer-wrap" class="center" style="display: none;">
-      <span>残り<span id="timer-text">5</span>秒</span>
+      <span>残り<span id="timer-text">2000</span>秒</span>
     </div>
 
-    <div class="start-game-wrap center">
-      <button id="start-game-button" onclick="game.getReady()">ゲームスタート</button>
+    <div id="start-game-wrap" class="center">
+      <p>ゲームの難しさを選択してください</p>
+      <button class="start-game-button" onclick="game.getReady('easy')">EASY</button>
+      <button class="start-game-button" onclick="game.getReady('middle')">MIDDLE</button>
+      <button class="start-game-button" onclick="game.getReady('hard')">HARD</button>
+      <button class="start-game-button" onclick="game.getReady('superHard')">SUPER HARD</button>
     </div>
     <script type="text/javascript" src="./js/ImageHandler.js"></script>
     <script type="text/javascript" src="./js/CanvasHandler.js"></script>
@@ -40,10 +44,10 @@
     <script type="text/javascript" src="./js/Size.js"></script>
     <script type="text/javascript" src="./js/Position.js"></script>
     <script>
+      const dom = new DomHandler()
       const game = new GameHandler()
       const canvas = new CanvasHandler()
       const imageHandler = new ImageHandler()
-      const dom = new DomHandler()
       const state = new State()
       const timer = new Timer()
       const point = new Point()

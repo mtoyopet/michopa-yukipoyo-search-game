@@ -1,18 +1,21 @@
 class GameHandler {
-  getReady() {
+  getReady(difficultyLevel) {
     let stageNumbers = state.stageNumbers
     if (![stageNumbers.beforeStart, stageNumbers.beforeRestart].includes(state.currentNumber)) { return }
     size.update()
     canvas.updateRowColumns()
+    dom.hideStartButton()
     // 外れの画像の配列を作る
     imageHandler.generateWrongImagesArray()
     // ゆきぽよの画像を１枚選ぶ
     imageHandler.selectCorrectImage()
+    // モードによって何度を調整する
+    timer.updateOriginalTime(difficultyLevel)
   }
 
   start () {
+    dom.showTimer()
     canvas.drawImages()
-    dom.hideStartButton()
     timer.startInterval()
     state.update("imageBeingSelected")
   }

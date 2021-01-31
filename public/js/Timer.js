@@ -1,6 +1,6 @@
 class Timer {
   constructor () {
-    this.originalTime = 7
+    this.originalTime = 10
     this.leftTime = this.originalTime
     this.timerElement = document.getElementById("timer-text")
     this.currentTimerId
@@ -27,5 +27,21 @@ class Timer {
   set (number) {
     this.leftTime = number
     this.timerElement.innerText = this.leftTime
+  }
+
+  updateOriginalTime (difficultyLevel) {
+    if (difficultyLevel === 'easy') {
+      this.originalTime = 13
+      this.leftTime = this.originalTime
+    } else if (difficultyLevel === 'middle') {
+      this.originalTime = 10
+      this.leftTime = this.originalTime
+    } else if (difficultyLevel === 'hard') {
+      this.originalTime = 7
+      this.leftTime = this.originalTime
+    } else if (difficultyLevel === 'superHard') {
+      this.originalTime = 4
+      this.leftTime = this.originalTime
+    }
   }
 }
