@@ -1,6 +1,6 @@
 class Timer {
   constructor () {
-    this.originalTime = 5
+    this.originalTime = 7
     this.leftTime = this.originalTime
     this.timerElement = document.getElementById("timer-text")
     this.currentTimerId
