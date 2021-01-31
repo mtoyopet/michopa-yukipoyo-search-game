@@ -2,7 +2,7 @@ class ImageHandler {
   constructor () {
     this.imagesLengthObject = {
       yukipoyo: 37,
-      michopa: 25,
+      michopa: 34,
       anmika: 3,
       kurochan: 1
     }    
@@ -34,7 +34,7 @@ class ImageHandler {
     let images = []
     let length = this.calculateImagesLength()
   
-    while (indexes.length < 25) {
+    while (indexes.length < 36) {
       const index = randomInt(length)
       if (!indexes.includes(index)) {
         if (!this.wrongImagesObject[index]) { continue }

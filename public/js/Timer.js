@@ -1,6 +1,7 @@
 class Timer {
   constructor () {
-    this.leftTime = 4
+    this.originalTime = 5
+    this.leftTime = this.originalTime
     this.timerElement = document.getElementById("timer-text")
     this.currentTimerId
   }
@@ -15,7 +16,7 @@ class Timer {
   }
 
   startInterval () {
-    this.set(4)
+    this.set(this.originalTime)
     this.currentTimerId = setInterval(() => { this.update() }, 1000)
   }
 
