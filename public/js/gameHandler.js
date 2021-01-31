@@ -14,9 +14,9 @@ class GameHandler {
   }
 
   start () {
-    dom.showTimer()
     canvas.drawImages()
     timer.startInterval()
+    dom.showTimer()
     state.update("imageBeingSelected")
   }
 
