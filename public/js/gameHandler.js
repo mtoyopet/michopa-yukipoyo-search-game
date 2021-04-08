@@ -5,7 +5,7 @@ class GameHandler {
     size.update()
     canvas.updateRowColumns()
     // 外れの画像の配列を作る
-    imageHandler.generateWrongImagesArray()
+    imageHandler.generateIncorrectImagesArray()
     // ゆきぽよの画像を１枚選ぶ
     imageHandler.selectCorrectImage()
     // モードによって何度を調整する
@@ -30,7 +30,7 @@ class GameHandler {
   continue () {
     state.update("beforeRestart")
     canvas.drawYukipoyoSelectedMenu()
-    imageHandler.generateWrongImagesArray()
+    imageHandler.generateIncorrectImagesArray()
     point.increment()
     setTimeout(() => {
       this.prepare()
@@ -39,8 +39,8 @@ class GameHandler {
 
   gameOver (type, mouseCoordinateX, mouseCoordinateY) {
     const selectedImageObject = imageHandler.findSelectedImage(mouseCoordinateX, mouseCoordinateY)
-    if (type === "wrongImageClicked") {
-      state.update("wrongImageSelected")
+    if (type === "incorrectImageClicked") {
+      state.update("incorrectImageSelected")
       canvas.drawHazureSelectedMenu(selectedImageObject)
     } else if (type === "timeOver") {
       state.update("timeOver")

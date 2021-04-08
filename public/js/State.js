@@ -6,7 +6,7 @@ class State {
       imageBeingSelected: 3,
       imageSelected: 4,
       timeOver: 5,
-      wrongImageSelected: 6
+      incorrectImageSelected: 6
     }
     this.currentNumber = this.stageNumbers.beforeStart
   }

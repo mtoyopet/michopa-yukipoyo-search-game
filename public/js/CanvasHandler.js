@@ -20,7 +20,7 @@ class CanvasHandler {
           imageHandler.correctImageObject.drawOnScreen(coordinateX, coordinateY)
         } else {
           // 外れ画像を表示する
-          imageHandler.wrongImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
+          imageHandler.incorrectImagesArray[counter].drawOnScreen(coordinateX, coordinateY)
         }
         counter += 1
       }
@@ -40,7 +40,7 @@ class CanvasHandler {
     } else if (point.counter >= point.numbers.fifteen && point.counter < point.numbers.twenty) {
       this.row = 4
       this.column = 4
-    } else if (point.counter >= point.numbers.twenty && point.counter < point.numbers.twentyfive) {
+    } else if (point.counter >= point.numbers.twenty && point.counter < point.numbers.twentyFive) {
       this.row = 5
       this.column = 5
     } else {

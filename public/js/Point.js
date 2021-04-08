@@ -7,7 +7,7 @@ class Point {
       ten: 10,
       fifteen: 15,
       twenty: 20,
-      twentyfive: 25,
+      twentyFive: 25,
       thirty: 30
     }
   }

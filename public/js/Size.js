@@ -14,7 +14,7 @@ class Size {
     } else if (point.counter >= point.numbers.fifteen && point.counter < point.numbers.twenty) { 
       this.width = 93.75
       this.height = 93.75
-    } else if (point.counter >= point.numbers.twenty && point.counter < point.numbers.twentyfive) {
+    } else if (point.counter >= point.numbers.twenty && point.counter < point.numbers.twentyFive) {
       this.width = 75
       this.height = 75
     } else {

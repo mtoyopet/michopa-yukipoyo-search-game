@@ -6,8 +6,8 @@ class ImageHandler {
       anmika: 3,
       kurochan: 1
     }    
-    this.wrongImagesObject = {}
-    this.wrongImagesArray = []
+    this.incorrectImagesObject = {}
+    this.incorrectImagesArray = []
     this.correctImageObject = {}
     this.yukipoyoCommentImage = {}
     this.kurochanCommentImage = {}
@@ -15,20 +15,20 @@ class ImageHandler {
     this.imagesLength = 4
   }
 
-  loadWrongImagesObject () {
+  loadIncorrectImagesObject () {
     let counter = 0
     for (let key in this.imagesLengthObject) {
       if (key === "yukipoyo") { continue }
       counter++
       for (let i = 1; i <= this.imagesLengthObject[key]; i++) {
         let gameObject = new GameObject(`./images/${key}/${i}.png`, key)
-        this.wrongImagesObject[counter] = gameObject
+        this.incorrectImagesObject[counter] = gameObject
         counter++
       }
     }
   }
 
-  generateWrongImagesArray () {
+  generateIncorrectImagesArray () {
     // 表示する外れ画像の配列を作る
     let indexes = []
     let images = []
@@ -37,13 +37,13 @@ class ImageHandler {
     while (indexes.length < 36) {
       const index = randomInt(length)
       if (!indexes.includes(index)) {
-        if (!this.wrongImagesObject[index]) { continue }
-        this.wrongImagesObject[index].updateSize()
-        images.push(this.wrongImagesObject[index])
+        if (!this.incorrectImagesObject[index]) { continue }
+        this.incorrectImagesObject[index].updateSize()
+        images.push(this.incorrectImagesObject[index])
         indexes.push(index)  
       }
     }
-    this.wrongImagesArray = images
+    this.incorrectImagesArray = images
   }
 
   calculateImagesLength () {
@@ -67,7 +67,7 @@ class ImageHandler {
     if (imageHandler.isCorrectImageSelected(mouseCoordinateX, mouseCoordinateY)) {
       game.continue()
     } else {
-      game.gameOver("wrongImageClicked", mouseCoordinateX, mouseCoordinateY)
+      game.gameOver("incorrectImageClicked", mouseCoordinateX, mouseCoordinateY)
     }
   }
 
@@ -89,7 +89,7 @@ class ImageHandler {
   }
 
   findSelectedImage (mouseCoordinateX, mouseCoordinateY) {
-    for (let image of this.wrongImagesArray) {
+    for (let image of this.incorrectImagesArray) {
       if (
         mouseCoordinateX > image.position.x &&
         mouseCoordinateX < image.position.x + size.width &&
