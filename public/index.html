@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ゆきぽよを探せ！ゲーム</title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="ゆきぽよを探せ！ゲーム" />
+    <meta property="og:description" content="JavaScriptで作ったゆきぽよを探すゲームです" />
+    <meta
+      property="og:image"
+      content="https://js-hack.s3-ap-northeast-1.amazonaws.com/search_yukipoyo.png"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
+  </head>
+  <body>
+    <div class="center">
+      <h2 class="center">ゆきぽよを探せゲーム</h2>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="canvas" class="center" width="375" height="375" onclick="imageHandler.select(event)"></canvas>
+    </div>
+
+    <div id="timer-wrap" class="center" style="display: none;">
+      <span>残り<span id="timer-text">2000</span>秒</span>
+    </div>
+
+    <div id="start-game-wrap" class="center">
+      <p>ゲームの難しさを選択してください</p>
+      <button class="start-game-button" onclick="game.prepare('easy')">EASY</button>
+      <button class="start-game-button" onclick="game.prepare('middle')">MIDDLE</button>
+      <button class="start-game-button" onclick="game.prepare('hard')">HARD</button>
+      <button class="start-game-button" onclick="game.prepare('superHard')">SUPER HARD</button>
+    </div>
+    <script type="text/javascript" src="./js/ImageHandler.js"></script>
+    <script type="text/javascript" src="./js/CanvasHandler.js"></script>
+    <script type="text/javascript" src="./js/gameHandler.js"></script>
+    <script type="text/javascript" src="./js/GameObject.js"></script>
+    <script type="text/javascript" src="./js/State.js"></script>
+    <script type="text/javascript" src="./js/Timer.js"></script>
+    <script type="text/javascript" src="./js/DomHandler.js"></script>
+    <script type="text/javascript" src="./js/Point.js"></script>
+    <script type="text/javascript" src="./js/Size.js"></script>
+    <script type="text/javascript" src="./js/Position.js"></script>
+    <script>
+      const dom = new DomHandler()
+      const game = new GameHandler()
+      const canvas = new CanvasHandler()
+      const imageHandler = new ImageHandler()
+      const state = new State()
+      const timer = new Timer()
+      const point = new Point()
+      const size = new Size()
+
+      window.onload = () => {
+        imageHandler.loadIncorrectImagesObject()
+        canvas.drawStartMenu()
+        imageHandler.loadGameOverMenuImages()
+      }
+    </script>
+</body>
+</html>

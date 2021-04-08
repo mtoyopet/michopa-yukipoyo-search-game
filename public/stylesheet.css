@@ -1,0 +1,44 @@
+body {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  font-family: 'Hiragino Kaku Gothic ProN','Hiragino Sans',Meiryo,sans-serif;
+}
+.content {
+  width: 100%;
+}
+.center {
+  text-align: center;
+}
+.canvas-wrap {
+  width: 375px;
+  margin: 0 auto;
+}
+.input-data {
+  text-align: right;
+}
+.mt5 {
+  max-width: 100%;
+  margin: 5px 10px;
+}
+
+#timer-text {
+  font-size: 30px;
+  color: #EE4056;
+  font-weight: bold;
+}
+
+.start-game-button {
+  background-color: #EE4056;
+  color: white;
+  font-size: 16px;
+  border-style: none;
+  padding: 10px;
+  text-align: center;        
+}
+
+#timer-wrap {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
