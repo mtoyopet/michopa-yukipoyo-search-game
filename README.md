@@ -1,5 +1,5 @@
 ## About / アバウト
-This is a game made with Vanilla JavaScript only. No framework. No Library. Really.
+This is a game made with Vanilla JavaScript (& a bit of HTML/CSS) only. No framework. No Library. Really.
 
 HTML/CSS/JavaScriptだけで作ったゲームです。フレームワークやライブラリは使っていません。
 
