@@ -41,7 +41,7 @@ class GameHandler {
     const selectedImageObject = imageHandler.findSelectedImage(mouseCoordinateX, mouseCoordinateY)
     if (type === "incorrectImageClicked") {
       state.update("incorrectImageSelected")
-      canvas.drawHazureSelectedMenu(selectedImageObject)
+      canvas.drawIncorrectImageSelectedMenu(selectedImageObject)
     } else if (type === "timeOver") {
       state.update("timeOver")
       canvas.drawTimeOverMenu()

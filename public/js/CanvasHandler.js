@@ -2,17 +2,17 @@ class CanvasHandler {
   constructor () {
     this.canvas = document.getElementById("canvas") // canvas要素を取得
     this.gameScreenCtx = this.canvas.getContext("2d")
-    this.row = 1
-    this.column = 2
+    this.rows = 1
+    this.columns = 2
   }
 
   drawImages () {
     // 表示をクリア
     this.gameScreenCtx.clearRect(0, 0, 375, 375)
-    const randomInteger = Math.floor(Math.random() * (this.row * this.column))
+    const randomInteger = Math.floor(Math.random() * (this.rows * this.columns))
     let counter = 0
-    for (let i = 0; i < this.column; i++) {
-      for (let j = 0; j < this.row; j++) {
+    for (let i = 0; i < this.columns; i++) {
+      for (let j = 0; j < this.rows; j++) {
         const coordinateX = size.width * i
         const coordinateY = size.height * j
         if (randomInteger === counter) {
@@ -29,23 +29,23 @@ class CanvasHandler {
 
   updateRowColumns () {
     if (point.counter < point.numbers.five) {
-      this.row = 1
-      this.column = 2
+      this.rows = 1
+      this.columns = 2
     } else if (point.counter < point.numbers.ten) {
-      this.row = 2
-      this.column = 2
+      this.rows = 2
+      this.columns = 2
     } else if (point.counter >= point.numbers.ten && point.counter < point.numbers.fifteen) {
-      this.row = 3
-      this.column = 3
+      this.rows = 3
+      this.columns = 3
     } else if (point.counter >= point.numbers.fifteen && point.counter < point.numbers.twenty) {
-      this.row = 4
-      this.column = 4
+      this.rows = 4
+      this.columns = 4
     } else if (point.counter >= point.numbers.twenty && point.counter < point.numbers.twentyFive) {
-      this.row = 5
-      this.column = 5
+      this.rows = 5
+      this.columns = 5
     } else {
-      this.row = 6
-      this.column = 6
+      this.rows = 6
+      this.columns = 6
     }
   }
 
@@ -67,7 +67,7 @@ class CanvasHandler {
     this.gameScreenCtx.fillRect(0, 0, 375, 375)
     this.gameScreenCtx.font = '30px sans-serif'
     this.gameScreenCtx.fillStyle = "#EE4056"
-    this.gameScreenCtx.fillText(`${this.row * this.column}枚の写真から`, 85, 188)    
+    this.gameScreenCtx.fillText(`${this.rows * this.columns}枚の写真から`, 85, 188)    
     this.gameScreenCtx.fillText("ゆきぽよを探せ！", 85, 220)
     
     setTimeout(() => {
@@ -92,7 +92,7 @@ class CanvasHandler {
     this.gameScreenCtx.fillText("ゆきぽよ発見🎉!!!", 25, 188)
   }
 
-  drawHazureSelectedMenu (selectedImageObject) {
+  drawIncorrectImageSelectedMenu (selectedImageObject) {
     this.gameScreenCtx.fillStyle = 'rgba(0,0,0,0.8)'
     this.gameScreenCtx.fillRect(0, 0, 375, 375)
     this.gameScreenCtx.font = '30px sans-serif'
