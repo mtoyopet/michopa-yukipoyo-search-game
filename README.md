@@ -16,4 +16,4 @@ https://search-yukipoyo-game.web.app
 
 - To learn algorithm / アルゴリズムの勉強のため
 - To learn class / クラスの勉強のため
-- To entertain people 🤗 / 人を楽しませるため
+- To entertain people🤗 / 人を楽しませるため🤗
